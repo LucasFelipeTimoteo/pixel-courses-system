@@ -1,0 +1,15 @@
+# node deps
+node_modules
+
+# Env variables
+.env
+secrets.env
+
+# Build
+build
+
+# Typescript build increment cache
+tsconfig.tsbuildinfo
+
+# local config
+.vscode
