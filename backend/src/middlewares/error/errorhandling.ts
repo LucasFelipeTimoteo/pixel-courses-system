@@ -1,8 +1,9 @@
 import type { Express, NextFunction, Response } from "express";
-import { ApiError } from "../../domain/entities/user/errors/apiError";
-import type { appErrors } from "../../domain/entities/user/errors/appErrors";
-import { ServerError } from "../../domain/entities/user/errors/serverError";
+import { JsonWebTokenError } from "jsonwebtoken";
 import { UserError } from "../../domain/entities/user/errors/userError";
+import { ApiError } from "../../domain/errors/apiError";
+import type { appErrors } from "../../domain/errors/appErrors";
+import { ServerError } from "../../domain/errors/serverError";
 
 export class ExpressErrorHandlerMiddleware {
   constructor(
@@ -46,7 +47,8 @@ export class ExpressErrorHandlerMiddleware {
     this.app.use(
       (err: appErrors, _: unknown, res: Response, next: NextFunction) => {
         if (
-          err instanceof UserError
+          err instanceof UserError ||
+          err instanceof JsonWebTokenError
         ) {
           // pinoLogger.debug(err);
           return res.status(400).json({

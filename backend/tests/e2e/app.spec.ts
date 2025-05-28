@@ -3,7 +3,8 @@ import { ExpressApp } from '../../src/app';
 import { MongooseService } from '../../src/services/database/mongoose/mongooseService';
 import { MongooseSeeds } from './utils/seeds/mongoose/mongooseSeeds';
 import userFixture from "./utils/fixtures/userFixture.json";
-import { email } from 'zod/v4';
+import jwt from 'jsonwebtoken'
+import { appEnv } from '../../src/global/env/appEnv/appEnv';
 
 const conectionPromise = new MongooseService("test_users").connect()
 const app = new ExpressApp().exec()
@@ -269,12 +270,49 @@ describe("User", () => {
 
 	// });
 
-	describe("POST /refresh", () => {
-		it("should get a new access token using the refresh token", async () => {
+	// describe("POST /refresh", () => {
+	// 	const refreshTokenHeader = "X-Pixel-Refresh-Token"
+	// 	const validRefreshToken = jwt.sign({ userId: userFixture._id }, appEnv.REFRESH_TOKEN_JWT_SECRET)
+	// 	const invalidRefreshToken = jwt.sign({ userId: userFixture._id }, 'invalidSignature')
+
+	// 	// HAPPY PATH
+	// 	it("should get a new access token using the refresh token", async () => {
+	// 		await request(app)
+	// 			.post("/refresh")
+	// 			.set(refreshTokenHeader, validRefreshToken)
+	// 			.expect(200)
+	// 			.expect(res => {
+	// 				expect(res.body).toHaveProperty("accessToken")
+	// 			})
+	// 	})
+
+	// 	//UNHAPPY PATH
+	// 	it("should get an error if token is invalid", async () => {
+	// 		await request(app)
+	// 			.post("/refresh")
+	// 			.set(refreshTokenHeader, invalidRefreshToken)
+	// 			.expect(400)
+	// 			.expect({ message: 'invalid signature' })
+	// 	})
+	// 	it("should get an error if token is malformed", async () => {
+	// 		await request(app)
+	// 			.post("/refresh")
+	// 			.set(refreshTokenHeader, 'malformed_token')
+	// 			.expect(400)
+	// 			.expect({ message: 'jwt malformed' })
+	// 	})
+
+	// });
+
+
+	describe("DELETE", () => {
+		//HAPPY PATH
+		it("Should Delete an user", async () => {
 			await request(app)
-				.post("/refresh")
-			// .send({accessToken})
+				.delete("/users/:id")
+				.expect(200)
 		})
-	})
+
+	});
 
 });
