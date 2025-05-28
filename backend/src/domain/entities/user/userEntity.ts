@@ -3,12 +3,12 @@ import { type Course, UserCourse } from "./value objects/userCourse/userCourse";
 import { UserEmail } from "./value objects/userEmail/userEmail";
 import { UserFirstName } from "./value objects/userFirstName/userFirstName";
 import { UserGender } from "./value objects/userGender/userGender";
-import type { userId } from "./value objects/userId/userId";
+import { UserId } from "./value objects/userId/userId";
 import { UserLastName } from "./value objects/userLastName/userLastName";
 import { UserPassword } from "./value objects/userPassword/userPassword";
 
-export class userEntity {
-	id: userId;
+export class UserEntity {
+	id: UserId;
 	firstName: UserFirstName;
 	lastName: UserLastName;
 	email: UserEmail;

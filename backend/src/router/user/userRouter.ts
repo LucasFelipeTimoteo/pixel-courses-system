@@ -1,4 +1,5 @@
 import { Router } from "express";
+import { editUserHandler } from "../../handlers/user/edit/editUserHandler";
 import { loginHandler } from "../../handlers/user/login/loginHandler";
 import { refreshHandler } from "../../handlers/user/refresh/refreshHandler";
 import { registerHandler } from "../../handlers/user/register/registerHandler";
@@ -9,7 +10,7 @@ const router = Router()
 router.post("/register", registerHandler)
 router.post("/login", loginHandler)
 router.post("/refresh", refreshHandler)
-
 router.delete("/users", deleteUserHandler)
+router.put("/users", editUserHandler)
 
 export const userRouter = router

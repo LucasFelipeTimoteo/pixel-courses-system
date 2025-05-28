@@ -309,48 +309,186 @@ describe("User", () => {
 	// });
 
 
-	describe("DELETE /users", () => {
-		const validUnexistedId = "68375b85edf8563b94cb79e4"
-		//HAPPY PATH
-		it("Should Delete an user", async () => {
-			await request(app)
-				.delete(`/users/`)
-				.set(accessTokenHeader, validAccessToken)
-				.expect(200)
-				.expect({ message: `Successfully deleted user ${userFixture._id}` })
-		})
-
-		// UNHAPPY PATH
-		it("Should get an arror if accessToken is not defined", async () => {
-			await request(app)
-				.delete('/users')
-				.expect(400)
-				.expect({ message: 'Invalid token' })
-		})
-		it("Should get an arror if token is invalid", async () => {
-			await request(app)
-				.delete('/users')
-				.set(accessTokenHeader, invalidToken)
-				.expect(400)
-				.expect({ message: 'invalid signature' })
-		})
-		it("Should get an arror if userId provided by accessToken not exists", async () => {
-			await request(app)
-				.delete('/users')
-				.set(accessTokenHeader, validUnexistToken)
-				.expect(404)
-				.expect({ message: 'Cannot find user 68375b85edf8563b94cb79e4' })
-		})
-
-	});
-
-	// describe("PUT /users?id", () => {
-	// 	// HAPPY PATH
-	// 	it("should edit all user info successfully", async () => {
+	// describe("DELETE /users", () => {
+	// 	const validUnexistedId = "68375b85edf8563b94cb79e4"
+	// 	//HAPPY PATH
+	// 	it("Should Delete an user", async () => {
 	// 		await request(app)
-	// 			.put(`/users/?=${userFixture._id}`)
-	// 			.
+	// 			.delete(`/users/`)
+	// 			.set(accessTokenHeader, validAccessToken)
+	// 			.expect(200)
+	// 			.expect({ message: `Successfully deleted user ${userFixture._id}` })
 	// 	})
+
+	// 	// UNHAPPY PATH
+	// 	it("Should get an arror if accessToken is not defined", async () => {
+	// 		await request(app)
+	// 			.delete('/users')
+	// 			.expect(400)
+	// 			.expect({ message: 'Invalid token' })
+	// 	})
+	// 	it("Should get an arror if token is invalid", async () => {
+	// 		await request(app)
+	// 			.delete('/users')
+	// 			.set(accessTokenHeader, invalidToken)
+	// 			.expect(400)
+	// 			.expect({ message: 'invalid signature' })
+	// 	})
+	// 	it("Should get an arror if userId provided by accessToken not exists", async () => {
+	// 		await request(app)
+	// 			.delete('/users')
+	// 			.set(accessTokenHeader, validUnexistToken)
+	// 			.expect(404)
+	// 			.expect({ message: 'Cannot find user 68375b85edf8563b94cb79e4' })
+	// 	})
+
 	// });
 
+
+	// describe("PUT /users", () => {
+	// 	//HAPPY PATH
+	// 	it("should edit user successfully", async () => {
+	// 		const editData = {
+	// 			firstName: "Jane",
+	// 			lastName: "Smith",
+	// 			email: "janesmith2@mail.com",
+	// 			password: "newpassword123",
+	// 			age: 28,
+	// 			gender: "F"
+	// 		}
+	// 		await request(app)
+	// 			.put("/users")
+	// 			.set(accessTokenHeader, validAccessToken)
+	// 			.send(editData)
+	// 			.expect(200)
+	// 			.expect({ message: `Successfully update user ${userFixture._id}` })
+	// 	})
+	// 	it("should edit only one field (firstName)", async () => {
+	// 		await request(app)
+	// 			.put("/users")
+	// 			.set(accessTokenHeader, validAccessToken)
+	// 			.send({ firstName: "OnlyName" })
+	// 			.expect(200)
+	// 			.expect({ message: `Successfully update user ${userFixture._id}` })
+	// 	})
+
+	// 	it("should edit password (and hash it)", async () => {
+	// 		await request(app)
+	// 			.put("/users")
+	// 			.set(accessTokenHeader, validAccessToken)
+	// 			.send({ password: "newpassword123" })
+	// 			.expect(200)
+	// 			.expect({ message: `Successfully update user ${userFixture._id}` })
+	// 	})
+
+	// 	// UNHAPPY PATH
+	// 	it("should return 400 if accessToken is not provided", async () => {
+	// 		await request(app)
+	// 			.put("/users")
+	// 			.send({ firstName: "Jane" })
+	// 			.expect(400)
+	// 			.expect({ message: "Invalid token" })
+	// 	})
+
+	// 	it("should return 400 if accessToken is invalid", async () => {
+	// 		await request(app)
+	// 			.put("/users")
+	// 			.set(accessTokenHeader, invalidToken)
+	// 			.send({ firstName: "Jane" })
+	// 			.expect(400)
+	// 			.expect({ message: "invalid signature" })
+	// 	})
+
+	// 	it("should return 404 if userId in token does not exist", async () => {
+	// 		await request(app)
+	// 			.put("/users")
+	// 			.set(accessTokenHeader, validUnexistToken)
+	// 			.send({ firstName: "Jane" })
+	// 			.expect(404)
+	// 			.expect({ message: "Cannot find user 68375b85edf8563b94cb79e4" })
+	// 	})
+
+	// 	it("should return 400 if trying to edit email to one already registered", async () => {
+	// 		const otherUser = {
+	// 			firstName: "Other",
+	// 			lastName: "User",
+	// 			age: 25,
+	// 			gender: "M",
+	// 			email: userFixture.email,
+	// 			password: "12345678"
+	// 		}
+
+	// 		await request(app)
+	// 			.put("/users")
+	// 			.set(accessTokenHeader, validAccessToken)
+	// 			.send({ email: otherUser.email })
+	// 			.expect(400)
+	// 			.expect({ message: "Email already registered" })
+	// 	})
+
+	// 	it("should return 400 if firstName is empty", async () => {
+	// 		await request(app)
+	// 			.put("/users")
+	// 			.set(accessTokenHeader, validAccessToken)
+	// 			.send({ firstName: "" })
+	// 			.expect(400)
+	// 			.expect({ message: "firstName is required, but received: " })
+	// 	})
+
+	// 	it("should return 400 if firstName is too short", async () => {
+	// 		await request(app)
+	// 			.put("/users")
+	// 			.set(accessTokenHeader, validAccessToken)
+	// 			.send({ firstName: "A" })
+	// 			.expect(400)
+	// 			.expect({ message: "firstName should have a length of at least 2, but received 1 with value: A" })
+	// 	})
+
+	// 	it("should return 400 if email is invalid", async () => {
+	// 		await request(app)
+	// 			.put("/users")
+	// 			.set(accessTokenHeader, validAccessToken)
+	// 			.send({ email: "invalidmail" })
+	// 			.expect(400)
+	// 			.expect({ message: "email should be valid, but received: invalidmail" })
+	// 	})
+
+	// 	it("should return 400 if password is too short", async () => {
+	// 		await request(app)
+	// 			.put("/users")
+	// 			.set(accessTokenHeader, validAccessToken)
+	// 			.send({ password: "1234567" })
+	// 			.expect(400)
+	// 			.expect({ message: "password should have at least 8 characters, but received 7" })
+	// 	})
+
+	// 	it("should return 400 if gender is invalid", async () => {
+	// 		await request(app)
+	// 			.put("/users")
+	// 			.set(accessTokenHeader, validAccessToken)
+	// 			.send({ gender: "x" })
+	// 			.expect(400)
+	// 			.expect({ message: "gender must be 'F', 'M' or undefined, but received: x" })
+	// 	})
+
+	// 	it("should return 400 if age is too low", async () => {
+	// 		await request(app)
+	// 			.put("/users")
+	// 			.set(accessTokenHeader, validAccessToken)
+	// 			.send({ age: 1 })
+	// 			.expect(400)
+	// 			.expect({ message: "Invalid age. It must be a number greater than 6, but received: 1" })
+	// 	})
+
+	// 	it("should return 400 if age is too high", async () => {
+	// 		await request(app)
+	// 			.put("/users")
+	// 			.set(accessTokenHeader, validAccessToken)
+	// 			.send({ age: 201 })
+	// 			.expect(400)
+	// 			.expect({ message: "Invalid age. It must be a number less than 200, but received: 201" })
+	// 	})
+	// })
+
+	describe("POST", () => { }) // testes de adicionar cursos aos users
 });
