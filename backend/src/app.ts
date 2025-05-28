@@ -2,6 +2,7 @@ import httpCompress from "compression";
 import express, { type Response } from "express";
 import helmet from "helmet";
 import { corsConfigMiddleware } from "./middlewares/cors/corsMiddlewareConfig";
+import { ExpressErrorHandlerMiddleware } from "./middlewares/error/errorhandling";
 import { userRouter } from "./router/user/userRouter";
 
 export class ExpressApp {
@@ -13,6 +14,7 @@ export class ExpressApp {
     app.use(httpCompress());
     app.use(corsConfigMiddleware());
     app.use(userRouter);
+    new ExpressErrorHandlerMiddleware(app).exec()
 
     app.get("/health", this.#healthCheck);
 

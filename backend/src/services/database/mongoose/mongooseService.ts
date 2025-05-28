@@ -24,4 +24,4 @@ export class MongooseService {
     return mongoClient;
   }
 }
-export const mongooseClient = new MongooseService().connect()
+// export const mongooseClient = new MongooseService().connect()

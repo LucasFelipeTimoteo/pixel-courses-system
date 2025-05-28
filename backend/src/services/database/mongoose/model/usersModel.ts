@@ -33,8 +33,7 @@ export const usersSchemaMongoose = new Schema<Omit<User, "id">>({
 });
 
 export const UsersModel = (
-  mongoUsersCollection = appEnv.MONGO_USER_COLLECTION,
   schema = usersSchemaMongoose,
-) => model(mongoUsersCollection, schema);
+) => model(process.env.NODE_ENV === "test" ? `test_${appEnv.MONGO_USER_COLLECTION}` : appEnv.MONGO_USER_COLLECTION, schema);
 
 export type UsersModelType = ReturnType<typeof UsersModel>;
