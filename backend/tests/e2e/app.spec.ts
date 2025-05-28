@@ -24,6 +24,11 @@ afterAll(async () => {
 })
 
 describe("User", () => {
+	const accessTokenHeader = "X-Pixel-Access-Token"
+	const refreshTokenHeader = "X-Pixel-Refresh-Token"
+	const validAccessToken = jwt.sign({ userId: userFixture._id }, appEnv.ACCESS_TOKEN_JWT_SECRET)
+	const invalidToken = jwt.sign({ userId: userFixture._id }, 'invalidSignature')
+	const validUnexistToken = jwt.sign({ userId: "68375b85edf8563b94cb79e4" }, appEnv.ACCESS_TOKEN_JWT_SECRET)
 
 	// describe("POST /register", () => {
 	// 	const validRegisteruser = {
@@ -271,7 +276,6 @@ describe("User", () => {
 	// });
 
 	// describe("POST /refresh", () => {
-	// 	const refreshTokenHeader = "X-Pixel-Refresh-Token"
 	// 	const validRefreshToken = jwt.sign({ userId: userFixture._id }, appEnv.REFRESH_TOKEN_JWT_SECRET)
 	// 	const invalidRefreshToken = jwt.sign({ userId: userFixture._id }, 'invalidSignature')
 
@@ -305,30 +309,48 @@ describe("User", () => {
 	// });
 
 
-	describe("DELETE", () => {
+	describe("DELETE /users", () => {
 		const validUnexistedId = "68375b85edf8563b94cb79e4"
 		//HAPPY PATH
 		it("Should Delete an user", async () => {
 			await request(app)
-				.delete(`/users/?id=${userFixture._id}`)
+				.delete(`/users/`)
+				.set(accessTokenHeader, validAccessToken)
 				.expect(200)
 				.expect({ message: `Successfully deleted user ${userFixture._id}` })
 		})
 
 		// UNHAPPY PATH
-		it("Should get an arror if id query is not defined", async () => {
+		it("Should get an arror if accessToken is not defined", async () => {
 			await request(app)
 				.delete('/users')
 				.expect(400)
-				.expect({ message: 'id should be provided to delete an user' })
+				.expect({ message: 'Invalid token' })
 		})
-		it("Should get an arror if id is not valid", async () => {
+		it("Should get an arror if token is invalid", async () => {
 			await request(app)
-				.delete(`/users/?id=${validUnexistedId}`)
+				.delete('/users')
+				.set(accessTokenHeader, invalidToken)
+				.expect(400)
+				.expect({ message: 'invalid signature' })
+		})
+		it("Should get an arror if userId provided by accessToken not exists", async () => {
+			await request(app)
+				.delete('/users')
+				.set(accessTokenHeader, validUnexistToken)
 				.expect(404)
-				.expect({ message: `Cannot find user ${validUnexistedId}` })
+				.expect({ message: 'Cannot find user 68375b85edf8563b94cb79e4' })
 		})
 
 	});
+
+	// describe("PUT /users?id", () => {
+	// 	// HAPPY PATH
+	// 	it("should edit all user info successfully", async () => {
+	// 		await request(app)
+	// 			.put(`/users/?=${userFixture._id}`)
+	// 			.
+	// 	})
+	// });
 
 });

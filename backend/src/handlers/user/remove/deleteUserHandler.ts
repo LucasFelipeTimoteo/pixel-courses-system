@@ -1,32 +1,42 @@
 import type { NextFunction, Request, Response } from 'express';
+import jwt, { JsonWebTokenError } from 'jsonwebtoken'
 import { UserError } from '../../../domain/entities/user/errors/userError';
 import { UserId } from '../../../domain/entities/user/value objects/userId/userId';
 import { ServerError } from '../../../domain/errors/serverError';
+import type { UserToken } from '../../../domain/interfaces/userToken/userToken';
+import { appEnv } from '../../../global/env/appEnv/appEnv';
 import { usersRepositoryMongoose } from '../../../repository/mongoose/mongooserepository';
-
 
 export const deleteUserHandler = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const { id } = req.query;
-    if (typeof id !== 'string') {
-      return res.status(400).json({ message: "id should be provided to delete an user" });
+    const accessToken = req.header("X-Pixel-Access-Token");
+    const invalidTokenResponse = { message: "Invalid token" }
+
+    if (typeof accessToken !== 'string' || !accessToken) {
+      return res.status(400).json(invalidTokenResponse)
     }
 
-    const userId = new UserId(id)
+    const validatedaccessToken = jwt.verify(accessToken, appEnv.ACCESS_TOKEN_JWT_SECRET) as UserToken
+
+    if (!("userId" in validatedaccessToken)) {
+      return res.status(400).json(invalidTokenResponse)
+    }
+
+    const userId = new UserId(validatedaccessToken.userId)
     const deletedUser = await usersRepositoryMongoose.deleteUserById(userId)
 
     if (!deletedUser) {
-      return res.status(404).json({ message: `Cannot find user ${id}` });
+      return res.status(404).json({ message: `Cannot find user ${userId.value}` });
     }
 
-    return res.status(200).json({ message: `Successfully deleted user ${id}` });
+    return res.status(200).json({ message: `Successfully deleted user ${deletedUser._id}` });
   }
   catch (error) {
     if (!(error instanceof Error)) {
       throw new ServerError("Unexpected server error")
     }
 
-    if (error instanceof UserError) {
+    if (error instanceof UserError || error instanceof JsonWebTokenError) {
       return next(error)
     }
 
