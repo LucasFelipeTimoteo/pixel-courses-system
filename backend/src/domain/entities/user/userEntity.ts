@@ -3,7 +3,7 @@ import { type Course, UserCourse } from "./value objects/userCourse/userCourse";
 import { UserEmail } from "./value objects/userEmail/userEmail";
 import { UserFirstName } from "./value objects/userFirstName/userFirstName";
 import { UserGender } from "./value objects/userGender/userGender";
-import { userId } from "./value objects/userId/userId";
+import type { userId } from "./value objects/userId/userId";
 import { UserLastName } from "./value objects/userLastName/userLastName";
 import { UserPassword } from "./value objects/userPassword/userPassword";
 
@@ -27,7 +27,7 @@ export class userEntity {
 		gender?: string,
 		courses?: Course[],
 	) {
-		this.id = new userId(id);
+		this.id = new UserId(id);
 		this.firstName = new UserFirstName(firstName);
 		this.lastName = new UserLastName(lastName);
 		this.email = new UserEmail(email);

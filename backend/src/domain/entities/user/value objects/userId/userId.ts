@@ -1,6 +1,6 @@
 import { UserError } from "../../errors/userError";
 
-export class userId {
+export class UserId {
 	constructor(public readonly value: string) {
 		if (!value) {
 			throw new UserError(`ID is required, but received: ${value}`);

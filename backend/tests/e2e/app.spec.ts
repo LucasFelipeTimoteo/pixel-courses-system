@@ -306,11 +306,27 @@ describe("User", () => {
 
 
 	describe("DELETE", () => {
+		const validUnexistedId = "68375b85edf8563b94cb79e4"
 		//HAPPY PATH
 		it("Should Delete an user", async () => {
 			await request(app)
-				.delete("/users/:id")
+				.delete(`/users/?id=${userFixture._id}`)
 				.expect(200)
+				.expect({ message: `Successfully deleted user ${userFixture._id}` })
+		})
+
+		// UNHAPPY PATH
+		it("Should get an arror if id query is not defined", async () => {
+			await request(app)
+				.delete('/users')
+				.expect(400)
+				.expect({ message: 'id should be provided to delete an user' })
+		})
+		it("Should get an arror if id is not valid", async () => {
+			await request(app)
+				.delete(`/users/?id=${validUnexistedId}`)
+				.expect(404)
+				.expect({ message: `Cannot find user ${validUnexistedId}` })
 		})
 
 	});
