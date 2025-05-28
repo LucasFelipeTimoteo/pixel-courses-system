@@ -6,7 +6,7 @@ describe("userAge", () => {
 		const validAge = 20;
 		const userAge = new UserAge(validAge);
 
-		expect(userAge.age).toBe(validAge);
+		expect(userAge.value).toBe(validAge);
 	});
 
 	// UNHAPPY PATH
