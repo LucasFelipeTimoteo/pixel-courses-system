@@ -26,16 +26,16 @@ export const addUserCourseHandler = async (
 			return res.status(400).json(invalidTokenResponse);
 		}
 
-		const validatedaccessToken = jwt.verify(
+		const validateAccessToken = jwt.verify(
 			accessToken,
 			appEnv.ACCESS_TOKEN_JWT_SECRET,
 		) as UserToken;
 
-		if (!("userId" in validatedaccessToken)) {
+		if (!("userId" in validateAccessToken)) {
 			return res.status(400).json(invalidTokenResponse);
 		}
 
-		const userId = new UserId(validatedaccessToken.userId);
+		const userId = new UserId(validateAccessToken.userId);
 		const addedUserCourse = await usersRepositoryMongoose.addUserCourse(
 			userId,
 			courseId,

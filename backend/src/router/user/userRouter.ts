@@ -15,6 +15,7 @@ router.post("/login", loginHandler);
 router.post("/refresh", refreshHandler);
 router.delete("/users", deleteUserHandler);
 router.put("/users", editUserHandler);
+// router.get("/users/courses", getUserCourseHandler);
 router.post("/users/courses", addUserCourseHandler);
 router.post("/users/courses/rate/", addUserCourseRateHandler);
 router.post("/users/courses/comment/", addUserCourseCommentHandler);
