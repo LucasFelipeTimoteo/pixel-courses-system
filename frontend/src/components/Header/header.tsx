@@ -17,7 +17,7 @@ const Header: React.FC = () => {
   };
 
   return (
-    <AppBar position="static" sx={styles.appBar}>
+    <AppBar position="static" color='secondary' sx={styles.appBar}>
       <Toolbar sx={styles.toolbar}>
         <Link to="/" style={{
           color: 'inherit',

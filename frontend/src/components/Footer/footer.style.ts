@@ -1,9 +1,10 @@
 import type { SxProps } from '@mui/material/styles';
 
+
 const footer: SxProps = {
   textAlign: 'center',
   padding: 2,
-  backgroundColor: 'primary.main',
+  backgroundColor: 'secondary.dark',
   marginTop: 5,
 };
 
@@ -13,5 +14,5 @@ const footerText = {
 
 export const styles = {
   footer,
-  footerText,
+  footerText
 };
