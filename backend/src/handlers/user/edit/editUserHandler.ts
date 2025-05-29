@@ -13,7 +13,7 @@ import { UserPassword } from "../../../domain/entities/user/value objects/userPa
 import { ServerError } from "../../../domain/errors/serverError";
 import type { UserToken } from "../../../domain/interfaces/userToken/userToken";
 import { appEnv } from "../../../global/env/appEnv/appEnv";
-import { usersRepositoryMongoose } from "../../../repository/mongoose/mongooserepository";
+import { usersRepositoryMongoose } from "../../../repository/mongoose/mongooseRepository";
 import type { EditUserHandlerRequest } from "./types";
 
 export const editUserHandler = async (

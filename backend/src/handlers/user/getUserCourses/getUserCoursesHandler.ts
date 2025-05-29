@@ -5,7 +5,7 @@ import { UserId } from "../../../domain/entities/user/value objects/userId/userI
 import { ServerError } from "../../../domain/errors/serverError";
 import type { UserToken } from "../../../domain/interfaces/userToken/userToken";
 import { appEnv } from "../../../global/env/appEnv/appEnv";
-import { usersRepositoryMongoose } from "../../../repository/mongoose/mongooserepository";
+import { usersRepositoryMongoose } from "../../../repository/mongoose/mongooseRepository";
 
 export const getUserCoursesHandler = async (
   req: Request,
