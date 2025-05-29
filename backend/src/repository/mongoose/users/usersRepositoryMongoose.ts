@@ -78,14 +78,17 @@ class UsersRepositoryMongoose {
 
 	async getUserCourses(userId: UserId) {
 		const usersModel = UsersModel();
-		const userCourses = await usersModel.findById(userId.value, { courses: 1, _id: 0 })
+		const userCourses = await usersModel.findById(userId.value, {
+			courses: 1,
+			_id: 0,
+		});
 
 		if (!userCourses) {
 			return { message: `Cannot find user ${userId.value}` };
 		}
 
-		const courses = userCourses.courses || []
-		return courses
+		const courses = userCourses.courses || [];
+		return courses;
 	}
 
 	async addUserCourse(userId: UserId, courseId: string) {
@@ -102,7 +105,7 @@ class UsersRepositoryMongoose {
 			return { message: `Cannot find user ${userId.value}` };
 		}
 		const alreadyHasCourse = user.courses?.some(
-			(c) => c.courseId?.toString() === courseId
+			(c) => c.courseId?.toString() === courseId,
 		);
 		if (alreadyHasCourse) {
 			return { message: `User already has course ${courseId}` };

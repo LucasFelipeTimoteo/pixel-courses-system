@@ -51,11 +51,9 @@ export const addUserCourseRateHandler = async (
 			return res.status(404).json(addedUserCourse);
 		}
 
-		return res
-			.status(200)
-			.json({
-				message: `Successfully added course rate to user ${addedUserCourse._id}`,
-			});
+		return res.status(200).json({
+			message: `Successfully added course rate to user ${addedUserCourse._id}`,
+		});
 	} catch (error) {
 		if (!(error instanceof Error)) {
 			throw new ServerError("Unexpected server error");

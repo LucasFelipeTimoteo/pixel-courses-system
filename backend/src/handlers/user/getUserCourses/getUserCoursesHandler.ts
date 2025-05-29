@@ -8,51 +8,48 @@ import { appEnv } from "../../../global/env/appEnv/appEnv";
 import { usersRepositoryMongoose } from "../../../repository/mongoose/users/usersRepositoryMongoose";
 
 export const getUserCoursesHandler = async (
-  req: Request,
-  res: Response,
-  next: NextFunction,
+	req: Request,
+	res: Response,
+	next: NextFunction,
 ) => {
-  try {
-    const accessToken = req.header("X-Pixel-Access-Token");
-    const invalidTokenResponse = { message: "Invalid token" };
+	try {
+		const accessToken = req.header("X-Pixel-Access-Token");
+		const invalidTokenResponse = { message: "Invalid token" };
 
-    if (typeof accessToken !== "string" || !accessToken) {
-      return res.status(400).json(invalidTokenResponse);
-    }
+		if (typeof accessToken !== "string" || !accessToken) {
+			return res.status(400).json(invalidTokenResponse);
+		}
 
-    const validateAccessToken = jwt.verify(
-      accessToken,
-      appEnv.ACCESS_TOKEN_JWT_SECRET,
-    ) as UserToken;
+		const validateAccessToken = jwt.verify(
+			accessToken,
+			appEnv.ACCESS_TOKEN_JWT_SECRET,
+		) as UserToken;
 
-    if (!("userId" in validateAccessToken)) {
-      return res.status(400).json(invalidTokenResponse);
-    }
+		if (!("userId" in validateAccessToken)) {
+			return res.status(400).json(invalidTokenResponse);
+		}
 
-    const userId = new UserId(validateAccessToken.userId);
-    const userCourses = await usersRepositoryMongoose.getUserCourses(userId);
+		const userId = new UserId(validateAccessToken.userId);
+		const userCourses = await usersRepositoryMongoose.getUserCourses(userId);
 
-    if ("message" in userCourses) {
-      return res.status(404).json(userCourses);
-    }
+		if ("message" in userCourses) {
+			return res.status(404).json(userCourses);
+		}
 
-    return res
-      .status(200)
-      .json(userCourses);
-  }
-  catch (error) {
-    if (!(error instanceof Error)) {
-      throw new ServerError("Unexpected server error");
-    }
+		return res.status(200).json(userCourses);
+	} catch (error) {
+		if (!(error instanceof Error)) {
+			throw new ServerError("Unexpected server error");
+		}
 
-    if (error instanceof UserError || error instanceof JsonWebTokenError) {
-      return next(error);
-    }
+		if (error instanceof UserError || error instanceof JsonWebTokenError) {
+			return next(error);
+		}
 
-    if (error.name.includes("CastError")) {
-      return next(new UserError("Invalid ID"));
-    }
+		if (error.name.includes("CastError")) {
+			return next(new UserError("Invalid ID"));
+		}
 
-    throw error;
-  }
+		throw error;
+	}
 };

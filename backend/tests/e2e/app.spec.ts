@@ -494,201 +494,227 @@ describe("User", () => {
 	// 	})
 	// })
 
-	describe("POST /users/courses", () => {
+	// describe("POST /users/courses", () => {
+	// 	//HAPPY PATH
+	// 	it("Should successfully add a new course to user", async () => {
+	// 		await request(app)
+	// 			.post("/users/courses")
+	// 			.set(accessTokenHeader, validAccessToken)
+	// 			.send({ courseId: courseFixture._id })
+	// 			// .expect(200)
+	// 			.expect({ message: `Successfully added course to user ${userFixture._id}` })
+	// 	})
+
+	// 	//UNHAPPY PATH
+	// 	it("Should get an error if courseId does not match any course", async () => {
+	// 		await request(app)
+	// 			.post("/users/courses")
+	// 			.set(accessTokenHeader, validAccessToken)
+	// 			.send({ courseId: validUnexistedId })
+	// 			.expect(404)
+	// 			.expect({ message: `course ${validUnexistedId} does not exists` })
+	// 	})
+	// 	it("Should get an error if courseId is invalid", async () => {
+	// 		await request(app)
+	// 			.post("/users/courses")
+	// 			.set(accessTokenHeader, validAccessToken)
+	// 			.send({ courseId: "invalid" })
+	// 			.expect(400)
+	// 			.expect({ message: "Invalid ID" })
+	// 	})
+	// 	it("Should get an error if cannot find user id", async () => {
+	// 		await request(app)
+	// 			.post("/users/courses")
+	// 			.set(accessTokenHeader, validUnexistToken)
+	// 			.send({ courseId: courseFixture._id })
+	// 			.expect(404)
+	// 			.expect({ message: 'Cannot find user 68375b85edf8563b94cb79e4' })
+	// 	})
+	// 	it("Should get an error if user already have the course", async () => {
+	// 		await request(app)
+	// 			.post("/users/courses")
+	// 			.set(accessTokenHeader, validAccessToken)
+	// 			.send({ courseId: userFixture.courses[0].courseId })
+	// 			.expect(404)
+	// 			.expect({ message: `User already has course ${userFixture.courses[0].courseId}` })
+	// 	})
+	// });
+
+	// // describe("POST /users/courses/rate", () => {
+	// // 	//HAPPY PATH
+	// // 	test('should add rate to user course', async () => {
+	// // 		await request(app)
+	// // 			.post("/users/courses/rate")
+	// // 			.set(accessTokenHeader, validAccessToken)
+	// // 			.send({
+	// // 				courseId: courseFixture._id,
+	// // 				rate: 5
+	// // 			})
+	// // 			.expect(200)
+	// // 			.expect({ message: `Successfully added course rate to user ${userFixture._id}` })
+	// // 	})
+	// // 	// UNHAPPY PATH
+	// // 	test('should get an error if rate if to large', async () => {
+	// // 		await request(app)
+	// // 			.post("/users/courses/rate")
+	// // 			.set(accessTokenHeader, validAccessToken)
+	// // 			.send({
+	// // 				courseId: courseFixture._id,
+	// // 				rate: 6
+	// // 			})
+	// // 			.expect(400)
+	// // 			.expect({ message: 'course rate must be an integer between 0 and 5' })
+	// // 	})
+	// // 	test('should get an error if rate if to short', async () => {
+	// // 		await request(app)
+	// // 			.post("/users/courses/rate")
+	// // 			.set(accessTokenHeader, validAccessToken)
+	// // 			.send({
+	// // 				courseId: courseFixture._id,
+	// // 				rate: -2
+	// // 			})
+	// // 			.expect(400)
+	// // 			.expect({ message: 'course rate must be an integer between 0 and 5' })
+	// // 	})
+
+	// // 	test('should get an error if token is invalid', async () => {
+	// // 		await request(app)
+	// // 			.post("/users/courses/rate")
+	// // 			.set(accessTokenHeader, invalidToken)
+	// // 			.send({
+	// // 				courseId: courseFixture._id,
+	// // 				rate: 5
+	// // 			})
+	// // 			.expect(400)
+	// // 			.expect({ message: 'invalid signature' })
+	// // 	})
+	// // 	test('should get an error if token is invalid', async () => {
+	// // 		await request(app)
+	// // 			.post("/users/courses/rate")
+	// // 			.set(accessTokenHeader, validUnexistToken)
+	// // 			.send({
+	// // 				courseId: courseFixture._id,
+	// // 				rate: 5
+	// // 			})
+	// // 			.expect(404)
+	// // 			.expect({ message: `Cannot add rate to course ${courseFixture._id}. Maybe user do not have this course` })
+	// // 	})
+
+	// // });
+
+	// // describe("POST /users/courses/comment", () => {
+	// // 	//HAPPY PATH
+	// // 	test('should add comment to user course', async () => {
+	// // 		await request(app)
+	// // 			.post("/users/courses/comment")
+	// // 			.set(accessTokenHeader, validAccessToken)
+	// // 			.send({
+	// // 				courseId: courseFixture._id,
+	// // 				comment: "nice course, dude!"
+	// // 			})
+	// // 			.expect(200)
+	// // 			.expect({ message: `Successfully added course comment to user ${userFixture._id}` })
+	// // 	})
+	// // 	// UNHAPPY PATH
+	// // 	test('should get an error if comment is an empty string', async () => {
+	// // 		await request(app)
+	// // 			.post("/users/courses/comment")
+	// // 			.set(accessTokenHeader, validAccessToken)
+	// // 			.send({
+	// // 				courseId: courseFixture._id,
+	// // 				comment: ""
+	// // 			})
+	// // 			.expect(400)
+	// // 			.expect({ message: 'comment should be provided' })
+	// // 	})
+	// // 	test('should get an error if comment is not a string', async () => {
+	// // 		await request(app)
+	// // 			.post("/users/courses/comment")
+	// // 			.set(accessTokenHeader, validAccessToken)
+	// // 			.send({
+	// // 				courseId: courseFixture._id,
+	// // 				comment: 3
+	// // 			})
+	// // 			.expect(400)
+	// // 			.expect({ message: 'course comment must be a non-empty string' })
+	// // 	})
+
+	// // 	test('should get an error if token is invalid', async () => {
+	// // 		await request(app)
+	// // 			.post("/users/courses/comment")
+	// // 			.set(accessTokenHeader, invalidToken)
+	// // 			.send({
+	// // 				courseId: courseFixture._id,
+	// // 				comment: "nice"
+	// // 			})
+	// // 			.expect(400)
+	// // 			.expect({ message: 'invalid signature' })
+	// // 	})
+	// // 	test('should get an error if token is invalid', async () => {
+	// // 		await request(app)
+	// // 			.post("/users/courses/comment")
+	// // 			.set(accessTokenHeader, validUnexistToken)
+	// // 			.send({
+	// // 				courseId: courseFixture._id,
+	// // 				comment: "nice"
+	// // 			})
+	// // 			.expect(404)
+	// // 			.expect({ message: `Cannot add rate to course ${courseFixture._id}. Maybe user do not have this course` })
+	// // 	})
+
+	// // });
+
+	// describe("GET /users/courses", () => {
+	// 	// HAPPY PATH
+	// 	it("should retun user courses", async () => {
+	// 		await request(app)
+	// 			.get("/users/courses")
+	// 			.set(accessTokenHeader, validAccessToken)
+	// 			.expect(200)
+	// 			.expect(userFixture.courses)
+	// 	})
+
+	// 	// UNHAPPY PATH
+	// 	test('should get an error if token is invalid', async () => {
+	// 		await request(app)
+	// 			.get("/users/courses/")
+	// 			.set(accessTokenHeader, invalidToken)
+	// 			.expect(400)
+	// 			.expect({ message: 'invalid signature' })
+	// 	})
+	// 	test('should get an error if token is valid but userId do not exist', async () => {
+	// 		await request(app)
+	// 			.get("/users/courses/")
+	// 			.set(accessTokenHeader, validUnexistToken)
+	// 			.expect(404)
+	// 			.expect({ message: 'Cannot find user 68375b85edf8563b94cb79e4' })
+	// 	})
+
+	// });
+
+	describe("GET /courses/report", () => {
 		//HAPPY PATH
-		it("Should successfully add a new course to user", async () => {
+		it("Should return complete relatory for each course", async () => {
 			await request(app)
-				.post("/users/courses")
-				.set(accessTokenHeader, validAccessToken)
-				.send({ courseId: courseFixture._id })
-				// .expect(200)
-				.expect({ message: `Successfully added course to user ${userFixture._id}` })
-		})
-
-		//UNHAPPY PATH
-		it("Should get an error if courseId does not match any course", async () => {
-			await request(app)
-				.post("/users/courses")
-				.set(accessTokenHeader, validAccessToken)
-				.send({ courseId: validUnexistedId })
-				.expect(404)
-				.expect({ message: `course ${validUnexistedId} does not exists` })
-		})
-		it("Should get an error if courseId is invalid", async () => {
-			await request(app)
-				.post("/users/courses")
-				.set(accessTokenHeader, validAccessToken)
-				.send({ courseId: "invalid" })
-				.expect(400)
-				.expect({ message: "Invalid ID" })
-		})
-		it("Should get an error if cannot find user id", async () => {
-			await request(app)
-				.post("/users/courses")
-				.set(accessTokenHeader, validUnexistToken)
-				.send({ courseId: courseFixture._id })
-				.expect(404)
-				.expect({ message: 'Cannot find user 68375b85edf8563b94cb79e4' })
-		})
-		it("Should get an error if user already have the course", async () => {
-			await request(app)
-				.post("/users/courses")
-				.set(accessTokenHeader, validAccessToken)
-				.send({ courseId: userFixture.courses[0].courseId })
-				.expect(404)
-				.expect({ message: `User already has course ${userFixture.courses[0].courseId}` })
-		})
-	});
-
-	// describe("POST /users/courses/rate", () => {
-	// 	//HAPPY PATH
-	// 	test('should add rate to user course', async () => {
-	// 		await request(app)
-	// 			.post("/users/courses/rate")
-	// 			.set(accessTokenHeader, validAccessToken)
-	// 			.send({
-	// 				courseId: courseFixture._id,
-	// 				rate: 5
-	// 			})
-	// 			.expect(200)
-	// 			.expect({ message: `Successfully added course rate to user ${userFixture._id}` })
-	// 	})
-	// 	// UNHAPPY PATH
-	// 	test('should get an error if rate if to large', async () => {
-	// 		await request(app)
-	// 			.post("/users/courses/rate")
-	// 			.set(accessTokenHeader, validAccessToken)
-	// 			.send({
-	// 				courseId: courseFixture._id,
-	// 				rate: 6
-	// 			})
-	// 			.expect(400)
-	// 			.expect({ message: 'course rate must be an integer between 0 and 5' })
-	// 	})
-	// 	test('should get an error if rate if to short', async () => {
-	// 		await request(app)
-	// 			.post("/users/courses/rate")
-	// 			.set(accessTokenHeader, validAccessToken)
-	// 			.send({
-	// 				courseId: courseFixture._id,
-	// 				rate: -2
-	// 			})
-	// 			.expect(400)
-	// 			.expect({ message: 'course rate must be an integer between 0 and 5' })
-	// 	})
-
-	// 	test('should get an error if token is invalid', async () => {
-	// 		await request(app)
-	// 			.post("/users/courses/rate")
-	// 			.set(accessTokenHeader, invalidToken)
-	// 			.send({
-	// 				courseId: courseFixture._id,
-	// 				rate: 5
-	// 			})
-	// 			.expect(400)
-	// 			.expect({ message: 'invalid signature' })
-	// 	})
-	// 	test('should get an error if token is invalid', async () => {
-	// 		await request(app)
-	// 			.post("/users/courses/rate")
-	// 			.set(accessTokenHeader, validUnexistToken)
-	// 			.send({
-	// 				courseId: courseFixture._id,
-	// 				rate: 5
-	// 			})
-	// 			.expect(404)
-	// 			.expect({ message: `Cannot add rate to course ${courseFixture._id}. Maybe user do not have this course` })
-	// 	})
-
-	// });
-
-	// describe("POST /users/courses/comment", () => {
-	// 	//HAPPY PATH
-	// 	test('should add comment to user course', async () => {
-	// 		await request(app)
-	// 			.post("/users/courses/comment")
-	// 			.set(accessTokenHeader, validAccessToken)
-	// 			.send({
-	// 				courseId: courseFixture._id,
-	// 				comment: "nice course, dude!"
-	// 			})
-	// 			.expect(200)
-	// 			.expect({ message: `Successfully added course comment to user ${userFixture._id}` })
-	// 	})
-	// 	// UNHAPPY PATH
-	// 	test('should get an error if comment is an empty string', async () => {
-	// 		await request(app)
-	// 			.post("/users/courses/comment")
-	// 			.set(accessTokenHeader, validAccessToken)
-	// 			.send({
-	// 				courseId: courseFixture._id,
-	// 				comment: ""
-	// 			})
-	// 			.expect(400)
-	// 			.expect({ message: 'comment should be provided' })
-	// 	})
-	// 	test('should get an error if comment is not a string', async () => {
-	// 		await request(app)
-	// 			.post("/users/courses/comment")
-	// 			.set(accessTokenHeader, validAccessToken)
-	// 			.send({
-	// 				courseId: courseFixture._id,
-	// 				comment: 3
-	// 			})
-	// 			.expect(400)
-	// 			.expect({ message: 'course comment must be a non-empty string' })
-	// 	})
-
-	// 	test('should get an error if token is invalid', async () => {
-	// 		await request(app)
-	// 			.post("/users/courses/comment")
-	// 			.set(accessTokenHeader, invalidToken)
-	// 			.send({
-	// 				courseId: courseFixture._id,
-	// 				comment: "nice"
-	// 			})
-	// 			.expect(400)
-	// 			.expect({ message: 'invalid signature' })
-	// 	})
-	// 	test('should get an error if token is invalid', async () => {
-	// 		await request(app)
-	// 			.post("/users/courses/comment")
-	// 			.set(accessTokenHeader, validUnexistToken)
-	// 			.send({
-	// 				courseId: courseFixture._id,
-	// 				comment: "nice"
-	// 			})
-	// 			.expect(404)
-	// 			.expect({ message: `Cannot add rate to course ${courseFixture._id}. Maybe user do not have this course` })
-	// 	})
-
-	// });
-
-	describe("GET /users/courses", () => {
-		// HAPPY PATH
-		it("should retun user courses", async () => {
-			await request(app)
-				.get("/users/courses")
+				.get(`/courses/report/${coursesFixture[0]._id}`)
 				.set(accessTokenHeader, validAccessToken)
 				.expect(200)
-				.expect(userFixture.courses)
+				.expect({
+					subscriptionsQuantity: 1,
+					subscriptionAverageAge: 30,
+					subscriptionsPerMaleGender: 1,
+					subscriptionsPerFemaleGender: 0,
+					subscriptionsPerUndefinedGender: 0
+				})
 		})
 
 		// UNHAPPY PATH
 		test('should get an error if token is invalid', async () => {
 			await request(app)
-				.get("/users/courses/")
+				.get(`/courses/report/${coursesFixture[0]._id}`)
 				.set(accessTokenHeader, invalidToken)
 				.expect(400)
 				.expect({ message: 'invalid signature' })
 		})
-		test('should get an error if token is invalid', async () => {
-			await request(app)
-				.get("/users/courses/")
-				.set(accessTokenHeader, validUnexistToken)
-				.expect(404)
-				.expect({ message: 'Cannot find user 68375b85edf8563b94cb79e4' })
-		})
-
 	});
 });

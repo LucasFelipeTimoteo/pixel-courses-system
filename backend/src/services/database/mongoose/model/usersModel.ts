@@ -3,16 +3,19 @@ import type { User } from "../../../../domain/interfaces/user/user";
 import { appEnv } from "../../../../global/env/appEnv/appEnv";
 import { CoursesModel } from "./coursesModel";
 
-export const userCousesSchema = new Schema({
-	courseId: {
-		type: Schema.Types.ObjectId,
-		required: true,
-		ref: CoursesModel().modelName,
+export const userCousesSchema = new Schema(
+	{
+		courseId: {
+			type: Schema.Types.ObjectId,
+			required: true,
+			ref: CoursesModel().modelName,
+		},
+		name: { type: "string", required: true, minlength: 1 },
+		comment: { type: "string", required: false },
+		rate: { type: "number", required: false, min: 0, max: 5 },
 	},
-	name: { type: "string", required: true, minlength: 1 },
-	comment: { type: "string", required: false },
-	rate: { type: "number", required: false, min: 0, max: 5 },
-}, { _id: false });
+	{ _id: false },
+);
 
 export const usersSchemaMongoose = new Schema<Omit<User, "id">>({
 	firstName: {

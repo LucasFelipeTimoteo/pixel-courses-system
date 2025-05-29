@@ -1,0 +1,68 @@
+[
+  {
+    "id": "683779018824cc9164b88b83",
+    "age": 24,
+    "gender": "M",
+    "courses": [
+      {
+        "courseId": "6837a88cf6246d98be47bbed",
+        "name": "Curso Javascript",
+        "rate": 3,
+        "comment": "nice"
+      },
+      {
+        "courseId": "6837a88cf6246d98be47bbf5",
+        "name": "Curso C++"
+      }
+    ]
+  },
+  {
+    "id": "68377de1d29827c07e7936b8",
+    "age": 18,
+    "gender": "M",
+    "courses": [
+      {
+        "courseId": "6837a88cf6246d98be47bbed",
+        "name": "Curso Javascript",
+        "rate": 5,
+        "comment": "nice course, dude!"
+      },
+      {
+        "courseId": "6837a88cf6246d98be47bbed",
+        "name": "Curso Javascript"
+      }
+    ]
+  },
+  {
+    "id": "6838738984b860f8724783da",
+    "age": 30,
+    "courses": [
+      {
+        "courseId": "6837a88cf6246d98be47bbf5",
+        "name": "Curso C++"
+      },
+      {
+        "courseId": "6837a88cf6246d98be47bbed",
+        "name": "Curso Javascript",
+        "rate": 1
+      }
+    ]
+  },
+  {
+    "id": "68371bdb6d7c2ae992fba6f9",
+    "gender": "F",
+    "age": 31,
+    "courses": [
+      {
+        "courseId": "6837a88cf6246d98be47bbf5",
+        "name": "Curso C++",
+        "comment": "amazing"
+      },
+      {
+        "courseId": "6837a88cf6246d98be47bbed",
+        "name": "Curso Javascript",
+        "comment": "amazing"
+      }
+    ]
+  }
+]
