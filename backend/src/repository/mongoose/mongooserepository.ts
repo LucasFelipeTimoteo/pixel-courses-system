@@ -76,6 +76,18 @@ class UsersRepositoryMongoose {
 		return editedUser;
 	}
 
+	async getUserCourses(userId: UserId) {
+		const usersModel = UsersModel();
+		const userCourses = await usersModel.findById(userId.value, { courses: 1, _id: 0 })
+
+		if (!userCourses) {
+			return { message: `Cannot find user ${userId.value}` };
+		}
+
+		const courses = userCourses.courses || []
+		return courses
+	}
+
 	async addUserCourse(userId: UserId, courseId: string) {
 		const coursesModel = CoursesModel();
 		const usersModel = UsersModel();

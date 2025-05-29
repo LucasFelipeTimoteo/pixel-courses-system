@@ -6,5 +6,12 @@
   "password": "12345678",
   "email": "johnmain@mail.com",
   "gender": "M",
-  "courses": []
+  "courses": [
+    {
+      "courseId": "6837a88cf6246d98be47bbed",
+      "name": "Curso Javascript",
+      "rate": 5,
+      "comment": "nice course, dude!"
+    }
+  ]
 }
