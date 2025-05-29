@@ -1,4 +1,5 @@
 import type { CourseId } from "../../../domain/entities/user/value objects/courseId/courseId";
+import { CoursesModel } from "../../../services/database/mongoose/model/coursesModel";
 import { UsersModel } from "../../../services/database/mongoose/model/usersModel";
 
 export class CoursesRepositoryMongoose {
@@ -18,6 +19,12 @@ export class CoursesRepositoryMongoose {
 		}
 
 		return usersWithCourse;
+	}
+
+	async getCourses() {
+		const coursesModel = CoursesModel()
+		const courses = await coursesModel.find({}, {__v: 0})
+		return courses
 	}
 }
 
