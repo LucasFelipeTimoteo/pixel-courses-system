@@ -3,6 +3,7 @@ import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import Footer from './components/Footer/footer';
 import Header from './components/Header/header';
 import { ThemeContextProvider } from './contexts/theme/provider/themeProvider';
+import Hero from './components/Hero/hero';
 
 function App() {
   return (
@@ -12,7 +13,7 @@ function App() {
         <Router>
           <CssBaseline />
           <Header />
-          {/* <Hero /> */}
+          <Hero />
           {/* <Routes>
           <Route path="/" element={<CoursesPage />} />
           <Route path="/courseReport" element={<CourseReportPage />} />
