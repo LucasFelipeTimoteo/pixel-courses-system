@@ -1,0 +1,17 @@
+{
+  "_id": "68372048f193978cf3664a19",
+  "firstName": "Default",
+  "lastName": "Doe",
+  "age": 30,
+  "password": "12345678",
+  "email": "johnmain@mail.com",
+  "gender": "M",
+  "courses": [
+    {
+      "courseId": "6837a88cf6246d98be47bbed",
+      "name": "Curso Javascript",
+      "rate": 3,
+      "comment": "nice"
+    }
+  ]
+}

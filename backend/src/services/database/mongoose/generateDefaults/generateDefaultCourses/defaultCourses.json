@@ -1,0 +1,86 @@
+[
+	{
+		"_id": "6837a88cf6246d98be47bbed",
+		"name": "Curso Javascript",
+		"description": "Nesse curso aprenderemos de maneira prática e bem estruturada ctodos os fundamentos de Javascript",
+		"durationHours": 56,
+		"image": "https: //wallpaperaccess.com/full/1555163.jpg"
+	},
+	{
+		"_id": "6837a88cf6246d98be47bbee",
+		"name": "Curso Nodejs",
+		"description": "Nesse curso aprenderemos de maneira prática e bem estruturada ctodos os fundamentos de Nodejs",
+		"durationHours": 12,
+		"image": "https: //wallpapercave.com/wp/wp5070716.jpg"
+	},
+	{
+		"_id": "6837a88cf6246d98be47bbef",
+		"name": "Curso React",
+		"description": "Nesse curso aprenderemos de maneira prática e bem estruturada ctodos os fundamentos de React",
+		"durationHours": 4,
+		"image": "https: //c4.wallpaperflare.com/wallpaper/294/834/442/reactjs-facebook-javascript-minimalism-wallpaper-preview.jpg"
+	},
+	{
+		"_id": "6837a88cf6246d98be47bbf0",
+		"name": "Curso mongoDB",
+		"description": "Nesse curso aprenderemos de maneira prática e bem estruturada ctodos os fundamentos de mongoDB",
+		"durationHours": 39,
+		"image": "https: //miro.medium.com/v2/resize:fit:1200/1*QJnvahq_EBdUGjYQUYrhvA.png"
+	},
+	{
+		"_id": "6837a88cf6246d98be47bbf1",
+		"name": "Curso PostgreSQL",
+		"description": "Nesse curso aprenderemos de maneira prática e bem estruturada ctodos os fundamentos de PostgreSQL",
+		"durationHours": 23,
+		"image": "https: //webapp.io/blog/content/images/2019/11/postgres.png"
+	},
+	{
+		"_id": "6837a88cf6246d98be47bbf2",
+		"name": "Curso Docker",
+		"description": "Nesse curso aprenderemos de maneira prática e bem estruturada ctodos os fundamentos de Docker",
+		"durationHours": 6,
+		"image": "https: //media2.dev.to/dynamic/image/width=1280,height=720,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2Fbvuo807bub1io4qcyek9.png"
+	},
+	{
+		"_id": "6837a88cf6246d98be47bbf3",
+		"name": "Curso Jest",
+		"description": "Nesse curso aprenderemos de maneira prática e bem estruturada ctodos os fundamentos de Jest",
+		"durationHours": 5,
+		"image": "https: //jestjs.io/pt-BR/img/opengraph.png"
+	},
+	{
+		"_id": "6837a88cf6246d98be47bbf4",
+		"name": "Curso Java",
+		"description": "Nesse curso aprenderemos de maneira prática e bem estruturada ctodos os fundamentos de Java",
+		"durationHours": 46,
+		"image": "https: //cdn.wallpapersafari.com/95/49/8OFpch.png"
+	},
+	{
+		"_id": "6837a88cf6246d98be47bbf5",
+		"name": "Curso C++",
+		"description": "Nesse curso aprenderemos de maneira prática e bem estruturada ctodos os fundamentos de C++",
+		"durationHours": 203,
+		"image": "https: //w0.peakpx.com/wallpaper/668/259/HD-wallpaper-c-logo-white-silk-texture-c-emblem-programming-language-c-silk-background.jpg"
+	},
+	{
+		"_id": "6837a88cf6246d98be47bbf6",
+		"name": "Curso Matemática",
+		"description": "Nesse curso aprenderemos de maneira prática e bem estruturada ctodos os fundamentos de Matemática",
+		"durationHours": 87,
+		"image": "https: //img.freepik.com/free-vector/chalkboard-with-math-elements_1411-88.jpg"
+	},
+	{
+		"_id": "6837a88cf6246d98be47bbf7",
+		"name": "Curso Git",
+		"description": "Nesse curso aprenderemos de maneira prática e bem estruturada ctodos os fundamentos de Git",
+		"durationHours": 1,
+		"image": "https: //cdn.filestackcontent.com/6yJPbkQ4SnybLJPKPLXP"
+	},
+	{
+		"_id": "6837a88cf6246d98be47bbf8",
+		"name": "Curso Linux e Shell Script",
+		"description": "Nesse curso aprenderemos de maneira prática e bem estruturada ctodos os fundamentos de Linux e Shell Script",
+		"durationHours": 22,
+		"image": "https: //c4.wallpaperflare.com/wallpaper/902/770/576/linux-tux-simple-minimalism-hd-wallpaper-preview.jpg"
+	}
+]
