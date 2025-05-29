@@ -1,7 +1,10 @@
 import type { UserEntity } from "../../domain/entities/user/userEntity";
+import type { CourseRate } from "../../domain/entities/user/value objects/courseRate/courseRate";
+import type { RawUserCourse } from "../../domain/entities/user/value objects/userCourse/userCourse";
 import type { UserId } from "../../domain/entities/user/value objects/userId/userId";
 import type { User } from "../../domain/interfaces/user/user";
 import type { RegisterBody } from "../../handlers/user/register/types";
+import { CoursesModel } from "../../services/database/mongoose/model/coursesModel";
 import { UsersModel } from "../../services/database/mongoose/model/usersModel";
 
 class UsersRepositoryMongoose {
@@ -68,6 +71,65 @@ class UsersRepositoryMongoose {
 
     return editedUser
   }
+
+  async addUserCourse(userId: UserId, courseId: string) {
+    const coursesModel = CoursesModel()
+    const usersModel = UsersModel()
+
+    const course = await coursesModel.findById(courseId)
+    if (!course) {
+      return { message: `course ${courseId} does not exists` }
+    }
+
+    const userCourses: RawUserCourse = {
+      courseId: course._id.toString(),
+      name: course.name,
+    }
+    const added = await usersModel.findOneAndUpdate(
+      { _id: userId.value },
+      {
+        $push: {
+          courses: userCourses
+        }
+      }
+    )
+
+    if (!added) {
+      return { message: `Cannot find user ${userId.value}` }
+    }
+
+    return added
+  }
+
+  async addUserCourseRate(userId: UserId, courseId: string, rate: CourseRate) {
+    const coursesModel = CoursesModel()
+    const usersModel = UsersModel()
+
+    const course = await coursesModel.findById(courseId)
+    if (!course) {
+      return { message: `course ${courseId} does not exists` }
+    }
+
+    const added = await usersModel.findOneAndUpdate(
+      { _id: userId.value },
+      {
+        $set: {
+          "courses.$[elem].rate": rate.value
+        }
+      },
+      {
+        arrayFilters: [{ "elem.courseId": courseId }],
+        new: true
+      }
+    )
+
+    if (!added) {
+      return { message: `Cannot add rate to course ${courseId}. Maybe user do not have this course` }
+    }
+
+    return added
+  }
+
 }
 
 

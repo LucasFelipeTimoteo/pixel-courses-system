@@ -4,6 +4,7 @@ import helmet from "helmet";
 import { corsConfigMiddleware } from "./middlewares/cors/corsMiddlewareConfig";
 import { ExpressErrorHandlerMiddleware } from "./middlewares/error/errorhandling";
 import { userRouter } from "./router/user/userRouter";
+import { generateDefaultCourses } from "./services/database/mongoose/generateDefaults/generateDefaultCourses/generateDefaultCourses";
 
 export class ExpressApp {
   exec() {
@@ -19,6 +20,10 @@ export class ExpressApp {
     app.get("/health", this.#healthCheck);
 
     return app;
+  }
+
+  async generateDefaultData() {
+    await generateDefaultCourses()
   }
 
   #healthCheck(_: unknown, res: Response) {

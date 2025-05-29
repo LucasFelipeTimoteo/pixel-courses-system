@@ -1,4 +1,5 @@
 import { UserError } from "../../../../errors/userError";
+import { UserId } from "../../userId";
 
 describe("userId", () => {
 	it("should create a valid Id", () => {

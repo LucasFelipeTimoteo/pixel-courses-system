@@ -1,13 +1,15 @@
+import jwt from 'jsonwebtoken';
 import request from 'supertest';
 import { ExpressApp } from '../../src/app';
-import { MongooseService } from '../../src/services/database/mongoose/mongooseService';
-import { MongooseSeeds } from './utils/seeds/mongoose/mongooseSeeds';
-import userFixture from "./utils/fixtures/userFixture.json";
-import jwt from 'jsonwebtoken'
 import { appEnv } from '../../src/global/env/appEnv/appEnv';
+import { MongooseService } from '../../src/services/database/mongoose/mongooseService';
+import coursesFixture from "./utils/fixtures/coursesFixture.json";
+import userFixture from "./utils/fixtures/userFixture.json";
+import { MongooseSeeds } from './utils/seeds/mongoose/mongooseSeeds';
 
 const conectionPromise = new MongooseService("test_users").connect()
-const app = new ExpressApp().exec()
+const expressApp = new ExpressApp()
+const app = expressApp.exec()
 let mongooseSeeds: MongooseSeeds
 
 beforeAll(async () => {
@@ -24,11 +26,13 @@ afterAll(async () => {
 })
 
 describe("User", () => {
+	const courseFixture = coursesFixture[0]
 	const accessTokenHeader = "X-Pixel-Access-Token"
 	const refreshTokenHeader = "X-Pixel-Refresh-Token"
 	const validAccessToken = jwt.sign({ userId: userFixture._id }, appEnv.ACCESS_TOKEN_JWT_SECRET)
 	const invalidToken = jwt.sign({ userId: userFixture._id }, 'invalidSignature')
 	const validUnexistToken = jwt.sign({ userId: "68375b85edf8563b94cb79e4" }, appEnv.ACCESS_TOKEN_JWT_SECRET)
+	const validUnexistedId = "683779608824cc9164b88b89"
 
 	// describe("POST /register", () => {
 	// 	const validRegisteruser = {
@@ -490,5 +494,104 @@ describe("User", () => {
 	// 	})
 	// })
 
-	describe("POST", () => { }) // testes de adicionar cursos aos users
+	// describe("POST /users/courses", () => {
+	// 	//HAPPY PATH
+	// 	it("Should successfully add a new course to user", async () => {
+	// 		await request(app)
+	// 			.post("/users/courses")
+	// 			.set(accessTokenHeader, validAccessToken)
+	// 			.send({ courseId: courseFixture._id })
+	// 			.expect(200)
+	// 			.expect({ message: `Successfully added course to user ${userFixture._id}` })
+	// 	})
+
+	// 	//UNHAPPY PATH
+	// 	it("Should get an error if courseId does not match any course", async () => {
+	// 		await request(app)
+	// 			.post("/users/courses")
+	// 			.set(accessTokenHeader, validAccessToken)
+	// 			.send({ courseId: validUnexistedId })
+	// 			.expect(404)
+	// 			.expect({ message: `course ${validUnexistedId} does not exists` })
+	// 	})
+	// 	it("Should get an error if courseId is invalid", async () => {
+	// 		await request(app)
+	// 			.post("/users/courses")
+	// 			.set(accessTokenHeader, validAccessToken)
+	// 			.send({ courseId: "invalid" })
+	// 			.expect(400)
+	// 			.expect({ message: "Invalid ID" })
+	// 	})
+	// 	it("Should get an error if courseId is invalid", async () => {
+	// 		await request(app)
+	// 			.post("/users/courses")
+	// 			.set(accessTokenHeader, validUnexistToken)
+	// 			.send({ courseId: courseFixture._id })
+	// 			.expect(404)
+	// 			.expect({ message: 'Cannot find user 68375b85edf8563b94cb79e4' })
+	// 	})
+	// });
+
+	describe("POST /users/courses/rate", () => {
+		//HAPPY PATH
+		test('should add rate to user course', async () => {
+			await request(app)
+				.post("/users/courses/rate")
+				.set(accessTokenHeader, validAccessToken)
+				.send({
+					courseId: courseFixture._id,
+					rate: 5
+				})
+				.expect(200)
+				.expect({ message: `Successfully added course to user ${userFixture._id}` })
+		})
+		// UNHAPPY PATH
+		test('should get an error if rate if to large', async () => {
+			await request(app)
+				.post("/users/courses/rate")
+				.set(accessTokenHeader, validAccessToken)
+				.send({
+					courseId: courseFixture._id,
+					rate: 6
+				})
+				.expect(400)
+				.expect({ message: 'course rate must be an integer between 0 and 5' })
+		})
+		test('should get an error if rate if to short', async () => {
+			await request(app)
+				.post("/users/courses/rate")
+				.set(accessTokenHeader, validAccessToken)
+				.send({
+					courseId: courseFixture._id,
+					rate: -2
+				})
+				.expect(400)
+				.expect({ message: 'course rate must be an integer between 0 and 5' })
+		})
+
+		test('should get an error if token is invalid', async () => {
+			await request(app)
+				.post("/users/courses/rate")
+				.set(accessTokenHeader, invalidToken)
+				.send({
+					courseId: courseFixture._id,
+					rate: 5
+				})
+				.expect(400)
+				.expect({ message: 'invalid signature' })
+		})
+		test('should get an error if token is invalid', async () => {
+			await request(app)
+				.post("/users/courses/rate")
+				.set(accessTokenHeader, validUnexistToken)
+				.send({
+					courseId: courseFixture._id,
+					rate: 5
+				})
+				.expect(404)
+				.expect({ message: `Cannot add rate to course ${courseFixture._id}. Maybe user do not have this course` })
+		})
+
+	});
+
 });

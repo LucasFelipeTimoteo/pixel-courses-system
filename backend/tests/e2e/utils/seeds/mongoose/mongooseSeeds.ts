@@ -4,6 +4,7 @@ import mongoose from 'mongoose';
 import { appEnv } from '../../../../../src/global/env/appEnv/appEnv';
 import { UsersModel, usersSchemaMongoose } from '../../../../../src/services/database/mongoose/model/usersModel';
 import userFixture from "../../fixtures/userFixture.json";
+import { generateDefaultCourses } from "../../../../../src/services/database/mongoose/generateDefaults/generateDefaultCourses/generateDefaultCourses";
 
 export class MongooseSeeds {
   nonHashedUserPassword: string
@@ -21,7 +22,7 @@ export class MongooseSeeds {
     // const randomTestCollectionName = "user_test_" + crypto.randomBytes(5).toString('hex')
     const usersModel = UsersModel(this.mongooseSchema)
     await usersModel.create(this.defaultUser)
-
+    await generateDefaultCourses()
     return usersModel
   }
 

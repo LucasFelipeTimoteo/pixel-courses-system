@@ -24,7 +24,8 @@ class EnvValidator {
       MONGO_DATABASE: z.string().min(1),
       MONGO_PORT: z.number().min(1),
       MONGO_URL: z.string().min(1).optional(),
-      MONGO_USER_COLLECTION: z.string().min(1)
+      MONGO_USER_COLLECTION: z.string().min(1),
+      MONGO_COURSES_COLLECTION: z.string().min(1)
     });
 
     const validatedEnv = schema.parse(env);

@@ -16,19 +16,18 @@ describe("UserCourse", () => {
 			};
 			expect(() => new UserCourse(validCourse)).not.toThrow();
 		});
-	});
-
-	describe("Invalid cases", () => {
-		it("should reject empty comment", () => {
-			const invalidCourse = {
+		it("should accepy empty comment", () => {
+			const validCourse = {
 				courseId: "swdwidu28",
 				name: "curso javascript",
 				comment: "",
 				rate: 3,
 			};
-			expect(() => new UserCourse(invalidCourse)).toThrow(UserError);
+			expect(() => new UserCourse(validCourse)).not.toThrow(UserError);
 		});
+	});
 
+	describe("Invalid cases", () => {
 		it("should reject whitespace-only comment", () => {
 			const invalidCourse = {
 				courseId: "swdwidu28",

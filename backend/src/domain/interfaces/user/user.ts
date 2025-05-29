@@ -1,4 +1,4 @@
-import type { Course } from "../../entities/user/value objects/userCourse/userCourse";
+import type { RawUserCourse } from "../../entities/user/value objects/userCourse/userCourse";
 
 export type User = {
   id: string;
@@ -8,5 +8,5 @@ export type User = {
   age: number;
   password: string;
   gender?: string;
-  courses?: Course[];
+  courses?: RawUserCourse[];
 }

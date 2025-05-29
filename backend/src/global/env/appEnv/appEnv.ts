@@ -16,6 +16,7 @@ export class AppEnv {
 	SALT: number;
 	MONGO_DATABASE: string;
 	MONGO_USER_COLLECTION: string;
+	MONGO_COURSES_COLLECTION: string
 	MONGO_PORT: number;
 	MONGO_URL?: string;
 
@@ -38,7 +39,7 @@ export class AppEnv {
 		this.MONGO_PORT = validEnv.MONGO_PORT
 		this.MONGO_URL = validEnv.MONGO_URL
 		this.MONGO_USER_COLLECTION = validEnv.MONGO_USER_COLLECTION
-
+		this.MONGO_COURSES_COLLECTION = validEnv.MONGO_COURSES_COLLECTION
 	}
 
 	getValidatedEnvValues() {

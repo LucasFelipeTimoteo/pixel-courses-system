@@ -11,6 +11,7 @@ export type EnvValues = {
   SALT: number;
   MONGO_DATABASE: string;
   MONGO_USER_COLLECTION: string;
+  MONGO_COURSES_COLLECTION: string;
   MONGO_PORT: number;
   MONGO_URL?: string;
 

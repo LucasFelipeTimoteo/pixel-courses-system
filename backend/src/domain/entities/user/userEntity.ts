@@ -1,5 +1,5 @@
 import { UserAge } from "./value objects/userAge/userAge";
-import { type Course, UserCourse } from "./value objects/userCourse/userCourse";
+import { type RawUserCourse, UserCourse } from "./value objects/userCourse/userCourse";
 import { UserEmail } from "./value objects/userEmail/userEmail";
 import { UserFirstName } from "./value objects/userFirstName/userFirstName";
 import { UserGender } from "./value objects/userGender/userGender";
@@ -25,7 +25,7 @@ export class UserEntity {
 		age: number,
 		password: string,
 		gender?: string,
-		courses?: Course[],
+		courses?: RawUserCourse[],
 	) {
 		this.id = new UserId(id);
 		this.firstName = new UserFirstName(firstName);
