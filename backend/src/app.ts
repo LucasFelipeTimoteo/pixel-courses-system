@@ -7,26 +7,26 @@ import { userRouter } from "./router/user/userRouter";
 import { generateDefaultCourses } from "./services/database/mongoose/generateDefaults/generateDefaultCourses/generateDefaultCourses";
 
 export class ExpressApp {
-  exec() {
-    const app = express();
+	exec() {
+		const app = express();
 
-    app.use(express.json());
-    app.use(helmet());
-    app.use(httpCompress());
-    app.use(corsConfigMiddleware());
-    app.use(userRouter);
-    new ExpressErrorHandlerMiddleware(app).exec()
+		app.use(express.json());
+		app.use(helmet());
+		app.use(httpCompress());
+		app.use(corsConfigMiddleware());
+		app.use(userRouter);
+		new ExpressErrorHandlerMiddleware(app).exec();
 
-    app.get("/health", this.#healthCheck);
+		app.get("/health", this.#healthCheck);
 
-    return app;
-  }
+		return app;
+	}
 
-  async generateDefaultData() {
-    await generateDefaultCourses()
-  }
+	async generateDefaultData() {
+		await generateDefaultCourses();
+	}
 
-  #healthCheck(_: unknown, res: Response) {
-    res.sendStatus(200);
-  }
+	#healthCheck(_: unknown, res: Response) {
+		res.sendStatus(200);
+	}
 }

@@ -6,69 +6,64 @@ import type { appErrors } from "../../domain/errors/appErrors";
 import { ServerError } from "../../domain/errors/serverError";
 
 export class ExpressErrorHandlerMiddleware {
-  constructor(
-    public app: Express,
-  ) { }
+	constructor(public app: Express) {}
 
-  exec() {
-    this.app.use(
-      (err: appErrors, _: unknown, res: Response, next: NextFunction) => {
-        if (err instanceof ServerError) {
-          // pinoLogger.debug(err);
-          res.status(err.statusCode || 500).json({
-            message: "Server error. Cannot process the request",
-          });
+	exec() {
+		this.app.use(
+			(err: appErrors, _: unknown, res: Response, next: NextFunction) => {
+				if (err instanceof ServerError) {
+					// pinoLogger.debug(err);
+					res.status(err.statusCode || 500).json({
+						message: "Server error. Cannot process the request",
+					});
 
-          if (!err.operational) return process.exit(1);
-          return;
-        }
+					if (!err.operational) return process.exit(1);
+					return;
+				}
 
-        return next(err);
-      },
-    );
+				return next(err);
+			},
+		);
 
-    this.app.use(
-      (err: appErrors, _: unknown, res: Response, next: NextFunction) => {
-        if (err instanceof ApiError) {
-          // pinoLogger.debug(err);
+		this.app.use(
+			(err: appErrors, _: unknown, res: Response, next: NextFunction) => {
+				if (err instanceof ApiError) {
+					// pinoLogger.debug(err);
 
-          res.status(err.statusCode || 500).json({
-            message: `${err.name}: ${err.message}`,
-          });
+					res.status(err.statusCode || 500).json({
+						message: `${err.name}: ${err.message}`,
+					});
 
-          if (!err.operational) return process.exit(1);
-          return;
-        }
+					if (!err.operational) return process.exit(1);
+					return;
+				}
 
-        return next(err);
-      },
-    );
+				return next(err);
+			},
+		);
 
-    this.app.use(
-      (err: appErrors, _: unknown, res: Response, next: NextFunction) => {
-        if (
-          err instanceof UserError ||
-          err instanceof JsonWebTokenError
-        ) {
-          // pinoLogger.debug(err);
-          return res.status(400).json({
-            message: err.message,
-          });
-        }
+		this.app.use(
+			(err: appErrors, _: unknown, res: Response, next: NextFunction) => {
+				if (err instanceof UserError || err instanceof JsonWebTokenError) {
+					// pinoLogger.debug(err);
+					return res.status(400).json({
+						message: err.message,
+					});
+				}
 
-        return next(err);
-      },
-    );
+				return next(err);
+			},
+		);
 
-    this.app.use(
-      (err: appErrors, _: unknown, res: Response, next: NextFunction) => {
-        // pinoLogger.debug(err);
-        return res.status(500).json({
-          message: "Unexpected unknown error. Cannot process request",
-        });
-      },
-    );
+		this.app.use(
+			(err: appErrors, _: unknown, res: Response, next: NextFunction) => {
+				// pinoLogger.debug(err);
+				return res.status(500).json({
+					message: "Unexpected unknown error. Cannot process request",
+				});
+			},
+		);
 
-    return this.app;
-  }
+		return this.app;
+	}
 }

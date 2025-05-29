@@ -1,7 +1,7 @@
-import dotenv from "dotenv"
+import dotenv from "dotenv";
 import pino from "pino";
 import { appEnv } from "../../env/appEnv/appEnv";
-dotenv.config()
+dotenv.config();
 
 class PinoLogger {
 	#isDevelopment = appEnv.NODE_ENV === "development";

@@ -1,5 +1,8 @@
 import { UserAge } from "./value objects/userAge/userAge";
-import { type RawUserCourse, UserCourse } from "./value objects/userCourse/userCourse";
+import {
+	type RawUserCourse,
+	UserCourse,
+} from "./value objects/userCourse/userCourse";
 import { UserEmail } from "./value objects/userEmail/userEmail";
 import { UserFirstName } from "./value objects/userFirstName/userFirstName";
 import { UserGender } from "./value objects/userGender/userGender";

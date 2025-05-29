@@ -1,18 +1,29 @@
-import type { NextFunction, Request, Response } from "express";
+import type { NextFunction, Response } from "express";
 import jwt, { JsonWebTokenError } from "jsonwebtoken";
 import { UserError } from "../../../domain/entities/user/errors/userError";
+import { CourseComment } from "../../../domain/entities/user/value objects/courseComment/courseComment";
 import { UserId } from "../../../domain/entities/user/value objects/userId/userId";
 import { ServerError } from "../../../domain/errors/serverError";
 import type { UserToken } from "../../../domain/interfaces/userToken/userToken";
 import { appEnv } from "../../../global/env/appEnv/appEnv";
 import { usersRepositoryMongoose } from "../../../repository/mongoose/mongooserepository";
+import type { addUserCourseCommentHandlerRequest } from "./types";
 
-export const deleteUserHandler = async (
-	req: Request,
+export const addUserCourseCommentHandler = async (
+	req: addUserCourseCommentHandlerRequest,
 	res: Response,
 	next: NextFunction,
 ) => {
 	try {
+		const { comment, courseId } = req.body;
+		if (!comment) {
+			return res.status(400).json({ message: "comment should be provided" });
+		}
+		if (!courseId) {
+			return res.status(400).json({ message: "courseId should be provided" });
+		}
+
+		const courseComment = new CourseComment(comment);
 		const accessToken = req.header("X-Pixel-Access-Token");
 		const invalidTokenResponse = { message: "Invalid token" };
 
@@ -30,17 +41,21 @@ export const deleteUserHandler = async (
 		}
 
 		const userId = new UserId(validatedaccessToken.userId);
-		const deletedUser = await usersRepositoryMongoose.deleteUserById(userId);
+		const addedUserCourse = await usersRepositoryMongoose.addUserCourseComment(
+			userId,
+			courseId,
+			courseComment,
+		);
 
-		if (!deletedUser) {
-			return res
-				.status(404)
-				.json({ message: `Cannot find user ${userId.value}` });
+		if ("message" in addedUserCourse) {
+			return res.status(404).json(addedUserCourse);
 		}
 
 		return res
 			.status(200)
-			.json({ message: `Successfully deleted user ${deletedUser._id}` });
+			.json({
+				message: `Successfully added course comment to user ${addedUserCourse._id}`,
+			});
 	} catch (error) {
 		if (!(error instanceof Error)) {
 			throw new ServerError("Unexpected server error");
@@ -51,7 +66,7 @@ export const deleteUserHandler = async (
 		}
 
 		if (error.name.includes("CastError")) {
-			return next(new UserError("Invalid user ID"));
+			return next(new UserError("Invalid ID"));
 		}
 
 		throw error;

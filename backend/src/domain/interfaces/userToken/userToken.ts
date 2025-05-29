@@ -1,3 +1,3 @@
 export type UserToken = {
-  userId: string;
+	userId: string;
 };

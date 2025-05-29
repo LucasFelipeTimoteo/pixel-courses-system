@@ -4,8 +4,8 @@ import type { ApiError } from "./apiError";
 import type { ServerError } from "./serverError";
 
 export type appErrors =
-  | Error
-  | ServerError
-  | JsonWebTokenError
-  | ApiError
-  | UserError
+	| Error
+	| ServerError
+	| JsonWebTokenError
+	| ApiError
+	| UserError;
