@@ -1,302 +1,307 @@
 {
-	"info": {
-		"_postman_id": "8bf40544-95b9-46df-a4e4-10fca4f9e681",
-		"name": "pixel-courses",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "36822624"
-	},
-	"item": [
-		{
-			"name": "register",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n  \"firstName\": \"Lola\",\n  \"lastName\": \"wittgentain\",\n  \"age\": 18,\n  \"email\": \"lola@mail.com\",\n  \"password\": \"12345678\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:3000/register",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"register"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "login",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n  \"email\": \"johnmail2@mail.com\",\n  \"password\": \"12345678\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:3000/login",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"login"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "edit user",
-			"request": {
-				"method": "PUT",
-				"header": [
-					{
-						"key": "X-Pixel-Access-Token",
-						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODM3N2RlMWQyOTgyN2MwN2U3OTM2YjgiLCJpYXQiOjE3NDg0Njc2ODgsImV4cCI6MTc0ODc2NzY4OH0.ksswgLscxtHofb79mig28BtO-mmSeABPsnBrNMqqjk4"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n  \"firstName\": \"Holinda\",\n  \"lastName\": \"Analita\",\n  \"age\": 18,\n  \"gender\": \"M\",\n  \"email\": \"testemail@mail.com\",\n  \"password\": \"12345678\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:3000/users",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"users"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "refresh",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "X-Pixel-Refresh-Token",
-						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODM3MzBhYzYxMjZmYzgzNzU1YjI3Y2IiLCJpYXQiOjE3NDg0NTM1ODQsImV4cCI6MTc2NDAwNTU4NH0.hY_HO06MniaH_rzw6MTIlosnk0Dq19w6DVBwShFEiG89"
-					}
-				],
-				"url": {
-					"raw": "http://localhost:3000/refresh",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"refresh"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "add user course",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "X-Pixel-Access-Token",
-						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODM3NzkwMTg4MjRjYzkxNjRiODhiODMiLCJpYXQiOjE3NDg1Mzc5MTQsImV4cCI6MTc0ODgzNzkxNH0.YCBa8oy_YeVG3ZNGIuh9om8T6tOot0MRSQZeR9ROSm4"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n  \"courseId\": \"6837a88cf6246d98be47bbed\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:3000/users/courses",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"users",
-						"courses"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "delete user",
-			"request": {
-				"method": "DELETE",
-				"header": [
-					{
-						"key": "X-Pixel-Access-Token",
-						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODM3N2RlMWQyOTgyN2MwN2U3OTM2YjgiLCJpYXQiOjE3NDg1NDIzNjMsImV4cCI6MTc0ODg0MjM2M30.GUM2wNuESRYtMWm6-iA22K_DZog83Zyz1xd3IQCl0hk"
-					}
-				],
-				"url": {
-					"raw": "http://localhost:3000/users",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"users"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "rate to course",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "X-Pixel-Access-Token",
-						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODM3NzkwMTg4MjRjYzkxNjRiODhiODMiLCJpYXQiOjE3NDg1Mzc5MTQsImV4cCI6MTc0ODgzNzkxNH0.YCBa8oy_YeVG3ZNGIuh9om8T6tOot0MRSQZeR9ROSm4"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n  \"courseId\": \"6837a88cf6246d98be47bbed\",\n  \"rate\": 5\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:3000/users/courses/rate",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"users",
-						"courses",
-						"rate"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "get course report",
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "X-Pixel-Access-Token",
-						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODM3NzkwMTg4MjRjYzkxNjRiODhiODMiLCJpYXQiOjE3NDg1Mzc5MTQsImV4cCI6MTc0ODgzNzkxNH0.YCBa8oy_YeVG3ZNGIuh9om8T6tOot0MRSQZeR9ROSm4"
-					}
-				],
-				"url": {
-					"raw": "http://localhost:3000/courses/report/6837a88cf6246d98be47bbed",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"courses",
-						"report",
-						"6837a88cf6246d98be47bbed"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "comment to course",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "X-Pixel-Access-Token",
-						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODM3MWJkYjZkN2MyYWU5OTJmYmE2ZjkiLCJpYXQiOjE3NDg1Mzg5OTUsImV4cCI6MTc0ODgzODk5NX0.RpAxT_p9Om8fE2KbHYk3dgraCK3k-8hr8PewoCsf5Ik"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n  \"courseId\": \"6837a88cf6246d98be47bbed\",\n  \"comment\": \"nice course, dude!\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:3000/users/courses/comment",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"users",
-						"courses",
-						"comment"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "get user courses",
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "X-Pixel-Access-Token",
-						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODM3NzkwMTg4MjRjYzkxNjRiODhiODMiLCJpYXQiOjE3NDg1Mzc5MTQsImV4cCI6MTc0ODgzNzkxNH0.YCBa8oy_YeVG3ZNGIuh9om8T6tOot0MRSQZeR9ROSm4"
-					}
-				],
-				"url": {
-					"raw": "http://localhost:3000/users/courses",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"users",
-						"courses"
-					]
-				}
-			},
-			"response": []
-		}
-	]
+    "info": {
+        "_postman_id": "f9172b24-d3ab-4ef7-9191-0221162ea0da",
+        "name": "pixel-courses",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+        "description": ""
+    },
+    "item": [
+        {
+            "name": "register",
+            "request": {
+                "method": "POST",
+                "url": {
+                    "raw": "http://localhost:3000/register",
+                    "path": [
+                        "register"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "3000"
+                },
+                "body": {
+                    "mode": "raw",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    },
+                    "raw": "{\n  \"firstName\": \"Lola\",\n  \"lastName\": \"wittgentain\",\n  \"age\": 18,\n  \"email\": \"lola@mail.com\",\n  \"password\": \"12345678\"\n}"
+                }
+            }
+        },
+        {
+            "name": "login",
+            "request": {
+                "method": "POST",
+                "url": {
+                    "raw": "http://localhost:3000/login",
+                    "path": [
+                        "login"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "3000"
+                },
+                "body": {
+                    "mode": "raw",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    },
+                    "raw": "{\n  \"email\": \"lola@mail.com\",\n  \"password\": \"12345678\"\n}"
+                }
+            }
+        },
+        {
+            "name": "edit user",
+            "request": {
+                "method": "PUT",
+                "url": {
+                    "raw": "http://localhost:3000/users",
+                    "path": [
+                        "users"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "3000"
+                },
+                "header": [
+                    {
+                        "key": "X-Pixel-Access-Token",
+                        "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODM3N2RlMWQyOTgyN2MwN2U3OTM2YjgiLCJpYXQiOjE3NDg0Njc2ODgsImV4cCI6MTc0ODc2NzY4OH0.ksswgLscxtHofb79mig28BtO-mmSeABPsnBrNMqqjk4"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    },
+                    "raw": "{\n  \"firstName\": \"Holinda\",\n  \"lastName\": \"Analita\",\n  \"age\": 18,\n  \"gender\": \"M\",\n  \"email\": \"testemail@mail.com\",\n  \"password\": \"12345678\"\n}"
+                }
+            }
+        },
+        {
+            "name": "refresh",
+            "request": {
+                "method": "POST",
+                "url": {
+                    "raw": "http://localhost:3000/refresh",
+                    "path": [
+                        "refresh"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "3000"
+                },
+                "header": [
+                    {
+                        "key": "X-Pixel-Refresh-Token",
+                        "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODM3MzBhYzYxMjZmYzgzNzU1YjI3Y2IiLCJpYXQiOjE3NDg0NTM1ODQsImV4cCI6MTc2NDAwNTU4NH0.hY_HO06MniaH_rzw6MTIlosnk0Dq19w6DVBwShFEiG89"
+                    }
+                ]
+            }
+        },
+        {
+            "name": "add user course",
+            "request": {
+                "method": "POST",
+                "url": {
+                    "raw": "http://localhost:3000/users/courses",
+                    "path": [
+                        "users",
+                        "courses"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "3000"
+                },
+                "header": [
+                    {
+                        "key": "X-Pixel-Access-Token",
+                        "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODM3NzkwMTg4MjRjYzkxNjRiODhiODMiLCJpYXQiOjE3NDg1Mzc5MTQsImV4cCI6MTc0ODgzNzkxNH0.YCBa8oy_YeVG3ZNGIuh9om8T6tOot0MRSQZeR9ROSm4"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    },
+                    "raw": "{\n  \"courseId\": \"6837a88cf6246d98be47bbed\"\n}"
+                }
+            }
+        },
+        {
+            "name": "get courses",
+            "request": {
+                "method": "GET",
+                "url": {
+                    "raw": "http://localhost:3000/courses",
+                    "path": [
+                        "courses"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "3000"
+                }
+            }
+        },
+        {
+            "name": "delete user",
+            "request": {
+                "method": "DELETE",
+                "url": {
+                    "raw": "http://localhost:3000/users",
+                    "path": [
+                        "users"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "3000"
+                },
+                "header": [
+                    {
+                        "key": "X-Pixel-Access-Token",
+                        "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODM4NzM4OTg0Yjg2MGY4NzI0NzgzZGEiLCJpYXQiOjE3NDg1NDIxODEsImV4cCI6MTc0ODg0MjE4MX0.6al36rj4DsnlAvd51tIUrr1mzUwcXRUxlS6zVlGXtCM"
+                    }
+                ]
+            }
+        },
+        {
+            "name": "rate to course",
+            "request": {
+                "method": "POST",
+                "url": {
+                    "raw": "http://localhost:3000/users/courses/rate",
+                    "path": [
+                        "users",
+                        "courses",
+                        "rate"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "3000"
+                },
+                "header": [
+                    {
+                        "key": "X-Pixel-Access-Token",
+                        "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODM3NzkwMTg4MjRjYzkxNjRiODhiODMiLCJpYXQiOjE3NDg1Mzc5MTQsImV4cCI6MTc0ODgzNzkxNH0.YCBa8oy_YeVG3ZNGIuh9om8T6tOot0MRSQZeR9ROSm4"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    },
+                    "raw": "{\n  \"courseId\": \"6837a88cf6246d98be47bbed\",\n  \"rate\": 5\n}"
+                }
+            }
+        },
+        {
+            "name": "get course report",
+            "request": {
+                "method": "GET",
+                "url": {
+                    "raw": "http://localhost:3000/courses/report/6837a88cf6246d98be47bbed",
+                    "path": [
+                        "courses",
+                        "report",
+                        "6837a88cf6246d98be47bbed"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "3000"
+                },
+                "header": [
+                    {
+                        "key": "X-Pixel-Access-Token",
+                        "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODM3NzkwMTg4MjRjYzkxNjRiODhiODMiLCJpYXQiOjE3NDg1Mzc5MTQsImV4cCI6MTc0ODgzNzkxNH0.YCBa8oy_YeVG3ZNGIuh9om8T6tOot0MRSQZeR9ROSm4"
+                    }
+                ]
+            }
+        },
+        {
+            "name": "comment to course",
+            "request": {
+                "method": "POST",
+                "url": {
+                    "raw": "http://localhost:3000/users/courses/comment",
+                    "path": [
+                        "users",
+                        "courses",
+                        "comment"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "3000"
+                },
+                "header": [
+                    {
+                        "key": "X-Pixel-Access-Token",
+                        "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODM3MWJkYjZkN2MyYWU5OTJmYmE2ZjkiLCJpYXQiOjE3NDg1Mzg5OTUsImV4cCI6MTc0ODgzODk5NX0.RpAxT_p9Om8fE2KbHYk3dgraCK3k-8hr8PewoCsf5Ik"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    },
+                    "raw": "{\n  \"courseId\": \"6837a88cf6246d98be47bbed\",\n  \"comment\": \"nice course, dude!\"\n}"
+                }
+            }
+        },
+        {
+            "name": "get user courses",
+            "request": {
+                "method": "GET",
+                "url": {
+                    "raw": "http://localhost:3000/users/courses/",
+                    "path": [
+                        "users",
+                        "courses"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "3000"
+                },
+                "header": [
+                    {
+                        "key": "X-Pixel-Access-Token",
+                        "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODM3NzkwMTg4MjRjYzkxNjRiODhiODMiLCJpYXQiOjE3NDg1Mzc5MTQsImV4cCI6MTc0ODgzNzkxNH0.YCBa8oy_YeVG3ZNGIuh9om8T6tOot0MRSQZeR9ROSm4"
+                    }
+                ]
+            }
+        }
+    ]
 }
