@@ -10,7 +10,7 @@ import { UserPassword } from "../../../domain/entities/user/value objects/userPa
 import type { User } from "../../../domain/interfaces/user/user";
 import { appEnv } from "../../../global/env/appEnv/appEnv";
 import { pinoLogger } from "../../../global/logger/pino/pinoLogger";
-import { usersRepositoryMongoose } from "../../../repository/mongoose/mongooseRepository";
+import { usersRepositoryMongoose } from "../../../repository/mongoose/users/usersRepositoryMongoose";
 import type { RegisterHandlerRequest } from "./types";
 
 export const registerHandler = async (

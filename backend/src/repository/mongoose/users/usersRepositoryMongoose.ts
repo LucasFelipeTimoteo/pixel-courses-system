@@ -1,12 +1,12 @@
-import type { UserEntity } from "../../domain/entities/user/userEntity";
-import type { CourseComment } from "../../domain/entities/user/value objects/courseComment/courseComment";
-import type { CourseRate } from "../../domain/entities/user/value objects/courseRate/courseRate";
-import type { RawUserCourse } from "../../domain/entities/user/value objects/userCourse/userCourse";
-import type { UserId } from "../../domain/entities/user/value objects/userId/userId";
-import type { User } from "../../domain/interfaces/user/user";
-import type { RegisterBody } from "../../handlers/user/register/types";
-import { CoursesModel } from "../../services/database/mongoose/model/coursesModel";
-import { UsersModel } from "../../services/database/mongoose/model/usersModel";
+import type { UserEntity } from "../../../domain/entities/user/userEntity";
+import type { CourseComment } from "../../../domain/entities/user/value objects/courseComment/courseComment";
+import type { CourseRate } from "../../../domain/entities/user/value objects/courseRate/courseRate";
+import type { RawUserCourse } from "../../../domain/entities/user/value objects/userCourse/userCourse";
+import type { UserId } from "../../../domain/entities/user/value objects/userId/userId";
+import type { User } from "../../../domain/interfaces/user/user";
+import type { RegisterBody } from "../../../handlers/user/register/types";
+import { CoursesModel } from "../../../services/database/mongoose/model/coursesModel";
+import { UsersModel } from "../../../services/database/mongoose/model/usersModel";
 
 class UsersRepositoryMongoose {
 	async register(user: RegisterBody) {
