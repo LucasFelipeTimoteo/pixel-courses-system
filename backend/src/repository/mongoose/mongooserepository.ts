@@ -97,6 +97,17 @@ class UsersRepositoryMongoose {
 			return { message: `course ${courseId} does not exists` };
 		}
 
+		const user = await usersModel.findById(userId.value, { courses: 1 });
+		if (!user) {
+			return { message: `Cannot find user ${userId.value}` };
+		}
+		const alreadyHasCourse = user.courses?.some(
+			(c) => c.courseId?.toString() === courseId
+		);
+		if (alreadyHasCourse) {
+			return { message: `User already has course ${courseId}` };
+		}
+
 		const userCourses: RawUserCourse = {
 			courseId: course._id.toString(),
 			name: course.name,

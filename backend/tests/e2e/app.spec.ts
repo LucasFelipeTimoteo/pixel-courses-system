@@ -26,7 +26,7 @@ afterAll(async () => {
 })
 
 describe("User", () => {
-	const courseFixture = coursesFixture[0]
+	const courseFixture = coursesFixture[1]
 	const accessTokenHeader = "X-Pixel-Access-Token"
 	const refreshTokenHeader = "X-Pixel-Refresh-Token"
 	const validAccessToken = jwt.sign({ userId: userFixture._id }, appEnv.ACCESS_TOKEN_JWT_SECRET)
@@ -494,43 +494,51 @@ describe("User", () => {
 	// 	})
 	// })
 
-	// describe("POST /users/courses", () => {
-	// 	//HAPPY PATH
-	// 	it("Should successfully add a new course to user", async () => {
-	// 		await request(app)
-	// 			.post("/users/courses")
-	// 			.set(accessTokenHeader, validAccessToken)
-	// 			.send({ courseId: courseFixture._id })
-	// 			.expect(200)
-	// 			.expect({ message: `Successfully added course to user ${userFixture._id}` })
-	// 	})
+	describe("POST /users/courses", () => {
+		//HAPPY PATH
+		it("Should successfully add a new course to user", async () => {
+			await request(app)
+				.post("/users/courses")
+				.set(accessTokenHeader, validAccessToken)
+				.send({ courseId: courseFixture._id })
+				// .expect(200)
+				.expect({ message: `Successfully added course to user ${userFixture._id}` })
+		})
 
-	// 	//UNHAPPY PATH
-	// 	it("Should get an error if courseId does not match any course", async () => {
-	// 		await request(app)
-	// 			.post("/users/courses")
-	// 			.set(accessTokenHeader, validAccessToken)
-	// 			.send({ courseId: validUnexistedId })
-	// 			.expect(404)
-	// 			.expect({ message: `course ${validUnexistedId} does not exists` })
-	// 	})
-	// 	it("Should get an error if courseId is invalid", async () => {
-	// 		await request(app)
-	// 			.post("/users/courses")
-	// 			.set(accessTokenHeader, validAccessToken)
-	// 			.send({ courseId: "invalid" })
-	// 			.expect(400)
-	// 			.expect({ message: "Invalid ID" })
-	// 	})
-	// 	it("Should get an error if courseId is invalid", async () => {
-	// 		await request(app)
-	// 			.post("/users/courses")
-	// 			.set(accessTokenHeader, validUnexistToken)
-	// 			.send({ courseId: courseFixture._id })
-	// 			.expect(404)
-	// 			.expect({ message: 'Cannot find user 68375b85edf8563b94cb79e4' })
-	// 	})
-	// });
+		//UNHAPPY PATH
+		it("Should get an error if courseId does not match any course", async () => {
+			await request(app)
+				.post("/users/courses")
+				.set(accessTokenHeader, validAccessToken)
+				.send({ courseId: validUnexistedId })
+				.expect(404)
+				.expect({ message: `course ${validUnexistedId} does not exists` })
+		})
+		it("Should get an error if courseId is invalid", async () => {
+			await request(app)
+				.post("/users/courses")
+				.set(accessTokenHeader, validAccessToken)
+				.send({ courseId: "invalid" })
+				.expect(400)
+				.expect({ message: "Invalid ID" })
+		})
+		it("Should get an error if cannot find user id", async () => {
+			await request(app)
+				.post("/users/courses")
+				.set(accessTokenHeader, validUnexistToken)
+				.send({ courseId: courseFixture._id })
+				.expect(404)
+				.expect({ message: 'Cannot find user 68375b85edf8563b94cb79e4' })
+		})
+		it("Should get an error if user already have the course", async () => {
+			await request(app)
+				.post("/users/courses")
+				.set(accessTokenHeader, validAccessToken)
+				.send({ courseId: userFixture.courses[0].courseId })
+				.expect(404)
+				.expect({ message: `User already has course ${userFixture.courses[0].courseId}` })
+		})
+	});
 
 	// describe("POST /users/courses/rate", () => {
 	// 	//HAPPY PATH
