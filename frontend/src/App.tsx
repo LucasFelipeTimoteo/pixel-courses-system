@@ -4,6 +4,7 @@ import Footer from './components/Footer/footer';
 import Header from './components/Header/header';
 import { ThemeContextProvider } from './contexts/theme/provider/themeProvider';
 import Hero from './components/Hero/hero';
+import CoursesPage from './pages/courses/coursesPage';
 
 function App() {
   return (
@@ -14,11 +15,11 @@ function App() {
           <CssBaseline />
           <Header />
           <Hero />
-          {/* <Routes>
-          <Route path="/" element={<CoursesPage />} />
-          <Route path="/courseReport" element={<CourseReportPage />} />
-          <Route path="/subscriptions" element={<SubscriptionsPage />} />
-          </Routes> */}
+          <Routes>
+            <Route path="/" element={<CoursesPage />} />
+            {/* <Route path="/courseReport" element={<CourseReportPage />} /> */}
+            {/* <Route path="/subscriptions" element={<SubscriptionsPage />} /> */}
+          </Routes>
           <Footer />
         </Router>
       </ThemeContextProvider>
