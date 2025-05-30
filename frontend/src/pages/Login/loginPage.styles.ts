@@ -2,7 +2,7 @@ import { type SxProps } from "@mui/system";
 
 const box: SxProps = {
   minHeight: "100vh",
-  background: "linear-gradient(135deg,rgb(189, 23, 180) 0%, #764ba2 100%)",
+  background: "linear-gradient(135deg,rgb(22, 135, 201) 0%,rgb(27, 48, 105) 100%)",
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
@@ -13,10 +13,11 @@ const paper: SxProps = {
   borderRadius: 3,
   background: "#fff",
   boxShadow: "0 8px 32px 0 rgba(31, 38, 135, 0.2)",
+  textAlign: "center"
 };
 
 const title: SxProps = {
-  color: "#764ba2",
+  color: "rgb(22, 135, 201)",
   fontWeight: 700,
 };
 
@@ -27,10 +28,10 @@ const form: SxProps = {
 const button: SxProps = {
   mt: 3,
   mb: 2,
-  background: "#764ba2",
+  background: "rgb(22, 135, 201)",
   fontWeight: "bold",
   fontSize: 16,
-  "&:hover": { background: "#5a357a" },
+  "&:hover": { background: "rgb(20, 119, 177)" },
 };
 
 const alert: SxProps = {

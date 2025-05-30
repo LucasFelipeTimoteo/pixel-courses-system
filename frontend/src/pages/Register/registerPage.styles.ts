@@ -13,6 +13,7 @@ const paper: SxProps = {
   borderRadius: 3,
   background: "#fff",
   boxShadow: "0 8px 32px 0 rgba(31, 38, 135, 0.2)",
+  textAlign: "center"
 };
 
 const title: SxProps = {

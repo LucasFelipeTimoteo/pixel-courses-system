@@ -10,6 +10,7 @@ import axios from "axios";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { styles } from './registerPage.styles';
+import { Link } from "react-router";
 
 type RegisterFormInputs = {
   firstName: string;
@@ -29,8 +30,13 @@ export const RegisterPage: React.FC = () => {
 
   const onSubmit = async (data: RegisterFormInputs) => {
     try {
-      await axios.post("http://localhost:3000/register", data)
+      const response = await axios.post("http://localhost:3000/register", data);
+      const { accessToken, refreshToken } = response.data;
       reset();
+      // todo: mudar para armazenamento em cookies http-only
+      localStorage.setItem("accessToken", accessToken);
+      localStorage.setItem("refreshToken", refreshToken);
+      location.href = "/"
     } catch (error) {
       console.error(error)
     }
@@ -123,6 +129,7 @@ export const RegisterPage: React.FC = () => {
             >
               {isSubmitting ? "Enviando..." : "Registrar"}
             </Button>
+            <Link to="/login">login</Link>
           </Box>
         </Paper>
       </Container>
