@@ -39,7 +39,7 @@ describe("User", () => {
 		const validRegisteruser = {
 			firstName: "John",
 			lastName: "Does",
-			age: 30,
+			age: '30',
 			gender: "M",
 			email: "johnmail@mail.com",
 			password: "12345678",
@@ -163,7 +163,7 @@ describe("User", () => {
 				.expect(400)
 				.expect({ message: "gender must be 'F', 'M' or undefined, but received: " })
 		})
-		it("should get an error if gender is invalidy", async () => {
+		it("should get an error if gender is invalid", async () => {
 			await request(app)
 				.post("/register")
 				.send({ ...validRegisteruser, gender: "m" })
@@ -176,33 +176,26 @@ describe("User", () => {
 				.post("/register")
 				.send({ ...validRegisteruser, age: undefined })
 				.expect(400)
-				.expect({ message: 'Invalid age. It must be a number, but received type: undefined' })
+				.expect({ message: 'Invalid age. It must be a number' })
 		})
 		it("should get an error if age is empty string", async () => {
 			await request(app)
 				.post("/register")
 				.send({ ...validRegisteruser, age: '' })
 				.expect(400)
-				.expect({ message: 'Invalid age. It must be a number, but received type: string' })
-		})
-		it("should get an error if age is empty string", async () => {
-			await request(app)
-				.post("/register")
-				.send({ ...validRegisteruser, age: '' })
-				.expect(400)
-				.expect({ message: 'Invalid age. It must be a number, but received type: string' })
+				.expect({ message: 'Invalid age. It must be a number greater than 6, but received: 0' })
 		})
 		it("should get an error if age is to short", async () => {
 			await request(app)
 				.post("/register")
-				.send({ ...validRegisteruser, age: 1 })
+				.send({ ...validRegisteruser, age: '1' })
 				.expect(400)
 				.expect({ message: 'Invalid age. It must be a number greater than 6, but received: 1' })
 		})
 		it("should get an error if age is to long", async () => {
 			await request(app)
 				.post("/register")
-				.send({ ...validRegisteruser, age: 201 })
+				.send({ ...validRegisteruser, age: '201' })
 				.expect(400)
 				.expect({ message: 'Invalid age. It must be a number less than 200, but received: 201' })
 		})

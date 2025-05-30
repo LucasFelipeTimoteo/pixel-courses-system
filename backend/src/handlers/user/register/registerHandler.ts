@@ -23,7 +23,7 @@ export const registerHandler = async (
 			firstName: new UserFirstName(req.body.firstName).value,
 			lastName: new UserLastName(req.body.lastName).value,
 			email: new UserEmail(req.body.email).value,
-			age: new UserAge(req.body.age).value,
+			age: new UserAge(Number(req.body.age)).value,
 			password: new UserPassword(req.body.password).value,
 			gender: new UserGender(req.body.gender).value,
 		};
