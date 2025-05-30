@@ -13,11 +13,12 @@ import AccessTimeIcon from '@mui/icons-material/AccessTime';
 
 interface CourseCardProps {
   course: Course;
+  large?: boolean
 }
 
-const CourseCard: React.FC<CourseCardProps> = ({ course }) => {
+const CourseCard: React.FC<CourseCardProps> = ({ course, large }) => {
   return (
-    <Card sx={styles.card}>
+    <Card sx={large ? styles.LargeCard : styles.card}>
       <CardMedia
         component="img"
         alt={course.name}
@@ -45,12 +46,16 @@ const CourseCard: React.FC<CourseCardProps> = ({ course }) => {
         </Typography>
 
       </CardContent>
-      <CardActions sx={styles.cardActions}>
+      {
+        !large && (
+          <CardActions sx={styles.cardActions}>
 
-        <Button startIcon={<AddShoppingCartIcon />} size="small">
-          subscribe
-        </Button>
-      </CardActions>
+            <Button startIcon={<AddShoppingCartIcon />} size="small">
+              subscribe
+            </Button>
+          </CardActions>
+        )
+      }
     </Card>
   );
 };

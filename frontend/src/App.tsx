@@ -4,7 +4,8 @@ import Footer from './components/Footer/footer';
 import Header from './components/Header/header';
 import { ThemeContextProvider } from './contexts/theme/provider/themeProvider';
 import Hero from './components/Hero/hero';
-import CoursesPage from './pages/courses/coursesPage';
+import CoursesPage from './pages/Courses/coursesPage';
+import { CourseReportPage } from './pages/CourseReport/courseReportPage';
 
 function App() {
   return (
@@ -17,7 +18,7 @@ function App() {
           <Hero />
           <Routes>
             <Route path="/" element={<CoursesPage />} />
-            {/* <Route path="/courseReport" element={<CourseReportPage />} /> */}
+            <Route path="/courseReport" element={<CourseReportPage />} />
             {/* <Route path="/subscriptions" element={<SubscriptionsPage />} /> */}
           </Routes>
           <Footer />

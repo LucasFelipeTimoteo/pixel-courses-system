@@ -11,6 +11,17 @@ const card: SxProps = {
   },
 };
 
+const LargeCard: SxProps = {
+  width: 420,
+  height: 350,
+  display: "flex",
+  flexDirection: "column",
+  overflow: 'hidden',
+  '&:hover img': {
+    transform: 'scale(1.05)',
+  },
+}
+
 const cardMedia: SxProps = {
   height: '50%',
   objectFit: 'scale-down',
@@ -49,7 +60,7 @@ const cardTimeText: SxProps = {
 
 const cardTimeIcon: SxProps = {
   verticalAlign: "text-bottom",
-    fontSize: '1rem',
+  fontSize: '1rem',
 }
 
 const cardActions: SxProps = {
@@ -58,6 +69,7 @@ const cardActions: SxProps = {
 
 export const styles = {
   card,
+  LargeCard,
   cardActions,
   cardContent,
   cardTimeText,
