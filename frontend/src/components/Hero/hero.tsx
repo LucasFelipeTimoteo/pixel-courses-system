@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, Typography } from '@mui/material';
 import { styles } from './hero.style';
-import { useHeroAnimation } from '../hooks/hero/useHeroAnimation';
+import { useHeroAnimation } from '../../hooks/hero/useHeroAnimation';
 
 const Hero: React.FC = () => {
   const { animate, isSubscriptionPage } = useHeroAnimation();

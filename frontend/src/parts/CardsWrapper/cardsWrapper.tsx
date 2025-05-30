@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Box } from '@mui/material';
 import { styles } from './cardWapper.style';
-import type { Course } from '../../components/hooks/courses/useCourses';
+import type { Course } from '../../hooks/courses/useCourses';
 import CourseCard from '../CoursesCard/coursesCard';
 
 interface CardsWrapperProps {

@@ -1,6 +1,6 @@
 import { Box, Typography } from '@mui/material';
 import React from 'react';
-import useCourses from '../../components/hooks/courses/useCourses';
+import useCourses from '../../hooks/courses/useCourses';
 import CardsWrapper from "../../parts/CardsWrapper/cardsWrapper";
 import Loading from '../../parts/Loading/loading';
 import { styles } from './coursesPage.styles';

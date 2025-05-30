@@ -1,13 +1,13 @@
 import { CssBaseline } from "@mui/material";
-import { Route, Routes, useLocation, useNavigate } from "react-router";
 import { useEffect } from "react";
+import { Route, Routes, useLocation, useNavigate } from "react-router";
+import Footer from "./components/Footer/footer";
 import Header from "./components/Header/header";
 import Hero from "./components/Hero/hero";
-import CoursesPage from "./pages/Courses/coursesPage";
 import { CourseReportPage } from "./pages/CourseReport/courseReportPage";
-import { RegisterPage } from "./pages/Register/registerPage";
-import Footer from "./components/Footer/footer";
+import CoursesPage from "./pages/Courses/coursesPage";
 import { LoginPage } from "./pages/Login/loginPage";
+import { RegisterPage } from "./pages/Register/registerPage";
 
 export const AppRouter: React.FC = () => {
   const location = useLocation();
@@ -26,6 +26,7 @@ export const AppRouter: React.FC = () => {
       <CssBaseline />
       {!isForm && <Header />}
       {!isForm && <Hero />}
+
       <Routes>
         <Route path="/" element={<CoursesPage />} />
         <Route path="/courseReport" element={<CourseReportPage />} />
@@ -33,6 +34,7 @@ export const AppRouter: React.FC = () => {
         <Route path="/login" element={<LoginPage />} />
         {/* <Route path="/subscriptions" element={<SubscriptionsPage />} /> */}
       </Routes>
+
       {!isForm && <Footer />}
     </>
   );

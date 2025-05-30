@@ -1,15 +1,17 @@
-import React from 'react';
+import AccessTimeIcon from '@mui/icons-material/AccessTime';
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+import { Tooltip } from '@mui/material';
+import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+import React from 'react';
+import { useNavigate } from 'react-router';
+import { useSelectedCourse } from '../../contexts/selectedCourseCourse/hooks/useSelectedCourse';
+import type { Course } from '../../hooks/courses/useCourses';
 import { styles } from './coursesCard.style';
-import { Tooltip } from '@mui/material';
-import type { Course } from '../../components/hooks/courses/useCourses';
-import AccessTimeIcon from '@mui/icons-material/AccessTime';
 
 interface CourseCardProps {
   course: Course;
@@ -17,14 +19,20 @@ interface CourseCardProps {
 }
 
 const CourseCard: React.FC<CourseCardProps> = ({ course, large }) => {
+  const { handleSelectedCourse } = useSelectedCourse()
+  const navigate = useNavigate();
+
+  const handleCardMediaClick = () => {
+    handleSelectedCourse(course)
+    navigate('/courseReport')
+  }
   return (
     <Card sx={large ? styles.LargeCard : styles.card}>
       <CardMedia
         component="img"
         alt={course.name}
-        image={
-          course.image
-        }
+        image={course.image}
+        onClick={handleCardMediaClick}
         sx={styles.cardMedia} />
       <CardContent sx={styles.cardContent}>
         <Tooltip title={course.name}>
