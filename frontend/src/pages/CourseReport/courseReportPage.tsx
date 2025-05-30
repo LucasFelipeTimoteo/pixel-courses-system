@@ -78,7 +78,7 @@ return (
     {!courseReport && (
       <>
         <Typography variant="h3" sx={{marginTop: 4}}>Nenhum relatório encontrado</Typography>
-        <Typography variant="body1">Os dados são apenas para vizualização, pois não são reais. Para ver dados reais, adicione este curso para usuários</Typography>
+        <Typography variant="body1">Os dados são apenas para visualização, pois não são reais. Para ver dados reais, adicione este curso para usuários</Typography>
       </>
     )}
 
