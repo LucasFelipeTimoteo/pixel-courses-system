@@ -1,31 +1,15 @@
-import { CssBaseline } from '@mui/material';
-import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
-import Footer from './components/Footer/footer';
-import Header from './components/Header/header';
+import { BrowserRouter as Router } from 'react-router-dom';
 import { ThemeContextProvider } from './contexts/theme/provider/themeProvider';
-import Hero from './components/Hero/hero';
-import CoursesPage from './pages/Courses/coursesPage';
-import { CourseReportPage } from './pages/CourseReport/courseReportPage';
+import { AppRouter } from './router';
 
 function App() {
   return (
-    <>
-      <ThemeContextProvider>
-
-        <Router>
-          <CssBaseline />
-          <Header />
-          <Hero />
-          <Routes>
-            <Route path="/" element={<CoursesPage />} />
-            <Route path="/courseReport" element={<CourseReportPage />} />
-            {/* <Route path="/subscriptions" element={<SubscriptionsPage />} /> */}
-          </Routes>
-          <Footer />
-        </Router>
-      </ThemeContextProvider>
-    </>
-  )
+    <ThemeContextProvider>
+      <Router>
+        <AppRouter />
+      </Router>
+    </ThemeContextProvider>
+  );
 }
 
 export default App
