@@ -86,3 +86,4 @@ basta abrir o postman e apertar em **importar**, então selecione ou arraste ess
 ## TODO (Coisas que não deu tempo de implementar ou resolver)
 - o frontend não está completo, ainda há funcionalidades do backend que ele não implementa
 - os tokens de acesso no front estão sendo salvos no localStorage. O ideal seria o backend enviar por cookies http-only
+- rodar backend com docker e docker-compose para amior compatibilidade entre sistemas
